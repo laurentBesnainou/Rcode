@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n\nlibrary(caret)\n\ndataset <- iris\n\n\n# create a list of 80% of the rows in the original dataset we can use for training\nvalidation_index <- createDataPartition(dataset$Species, p=0.80, list=FALSE)\n# select 20% of the data for validation\nvalidation <- dataset[-validation_index,]\n# use the remaining 80% of data to training and testing the models\ndataset <- dataset[validation_index,]\n\n\n\n# summarize the class distribution\npercentage <- prop.table(table(dataset$Species)) * 100\ncbind(freq=table(dataset$Species), percentage=percentage)\n\n2\n# scatterplot matrix\nfeaturePlot(x=x, y=y, plot=\"ellipse\")\n\n\n# a) linear algorithms\nset.seed(7)\nfit.lda <- train(Species~., data=dataset, method=\"lda\", metric=metric, trControl=control)\n# b) nonlinear algorithms\n# CART\nset.seed(7)\nfit.cart <- train(Species~., data=dataset, method=\"rpart\", metric=metric, trControl=control)\n# kNN\nset.seed(7)\nfit.knn <- train(Species~., data=dataset, method=\"knn\", metric=metric, trControl=control)\n# c) advanced algorithms\n# SVM\nset.seed(7)\nfit.svm <- train(Species~., data=dataset, method=\"svmRadial\", metric=metric, trControl=control)\n# Random Forest\nset.seed(7)\nfit.rf <- train(Species~., data=dataset, method=\"rf\", metric=metric, trControl=control)",
+    "created" : 1503676091499.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "126329563",
+    "id" : "33997919",
+    "lastKnownWriteTime" : 4,
+    "last_content_update" : 1503676478027,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,10 @@
+name: budget
+title: Budget
+account: comptehome
+server: shinyapps.io
+appId: 165085
+bundleId: 948305
+url: https://comptehome.shinyapps.io/budget/
+when: 1503317890.46023
+asMultiple: FALSE
+asStatic: FALSE

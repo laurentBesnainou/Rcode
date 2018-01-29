@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(RInno)\nexample_app(app_dir = \"app\") \n\ncreate_app(app_name = \"myapp\", app_dir = \"app\")\ncompile_iss()\n\nexample_app(app_dir = \"app\", wd = getwd())",
+    "created" : 1500654241070.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1276343882",
+    "id" : "12F1F41D",
+    "lastKnownWriteTime" : 9007667406176258,
+    "last_content_update" : 1500655436403,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

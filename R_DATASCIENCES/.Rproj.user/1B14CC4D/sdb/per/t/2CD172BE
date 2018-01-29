@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1503674165810.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2CD172BE",
+    "lastKnownWriteTime" : 23081145661849683,
+    "last_content_update" : 1503674165810,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "8F59CA00",
+        "caption" : "lycee",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=lycee&cache_key=8F59CA00",
+        "displayedObservations" : "2288",
+        "environment" : "",
+        "object" : "lycee",
+        "preview" : "0",
+        "totalObservations" : "2288",
+        "variables" : "50"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

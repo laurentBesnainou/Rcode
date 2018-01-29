@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(tidyverse)\nlibrary(ggplot2)\n\nlibrary(modelr)\noptions(na.action = na.warn)\n\n\nggplot(sim1, aes(x, y)) + \n  geom_point()\n\nmodels <- tibble(\n  a1 = runif(250, -20, 40),\n  a2 = runif(250, -5, 5)\n)\n\n#permet de faire une régression lineaire à partir des données dans sim1\nsim1_mod <- lm(y ~ x, data = sim1)\ndf <- coef(sim1_mod)\n\n#Réalisation de prediction sur la ase du modèle lineaire\n#grid permet de prendre toutes les valeurs en entrée sur X et de faire tableau avec des valeurs uniques\ngrid <- sim1 %>% \n  data_grid(x) \n\n#on ajoute des predictions \ngrid <- grid %>% \n  add_predictions(sim1_mod) \n\n#on va afficher les predictions\nggplot(sim1, aes(x)) +\n  geom_point(aes(y = y)) +\n  geom_line(aes(y = pred), data = grid, colour = \"red\", size = 1)\n\n### Residus (distance entre les observations et la prediction)\nsim1 <- sim1 %>% \n  add_residuals(sim1_mod)\n\n#interprétationo des residus\nggplot(sim1, aes(resid)) + \n  geom_freqpoly(binwidth = 0.5)\n\n#### loess() (courbe graduelle)\n\nsim1_mod2 <- loess(y ~ x, data = sim1)\n\n#grid permet de prendre toutes les valeurs en entrée sur X et de faire tableau avec des valeurs uniques\ngrid2 <- sim1 %>% \n  data_grid(x) \n\n#on ajoute des predictions \ngrid2 <- grid2 %>% \n  add_predictions(sim1_mod2) \n\n#gather_predictions (ajoute le nom du modèle en premiere colonne)\ngrid3 <- grid2 %>% \n  gather_predictions(sim1_mod2) \n\n#spread_predictions (permet d'avoir le nom du modèle en nom de colonne)\ngrid4 <- grid2 %>% \n  spread_predictions(sim1_mod2) \n\ndf <- tribble(\n  ~y, ~x1, ~x2,\n  4, 2, 5,\n  5, 1, 6\n)\nmodel_matrix(df, y ~ x1)\n\n#affichage du résultat\nggplot(sim1, aes(x)) +\n  geom_point(aes(y = y)) +\n  geom_smooth(aes(y = pred), data = grid2, colour = \"red\", size = 1)\ngather_predictions() and spread_predictions()\nggplot(sim1, aes(resid)) + \n  geom_freqpoly(binwidth = 0.5)\n\n\n### variables non numeriques\nsim2\nggplot(sim2) + \n  geom_point(aes(x, y))\n# regression lineaire sur sim2\nmod2 <- lm(y ~ x, data = sim2)\n\n#on ajoute des prediction avec le modèle lineaire\ngrid <- sim2 %>% \n  data_grid(x) %>% \n  add_predictions(mod2)\n\n\n#on regarde la vaeur moyenne en fonction de x\nggplot(sim2, aes(x)) + \n  geom_point(aes(y = y)) +\n  geom_point(data = grid, aes(y = pred), colour = \"red\", size = 4)\n\n#\n\nggplot(sim3, aes(x1, y)) + \n  geom_point(aes(colour = x2))\n\n################\ndf <- tribble(\n  ~ sex, ~ response,\n  \"male\", 1,\n  \"female\", 2,\n  \"male\", 1\n)\n\nggplot(sim3, aes(x1, y)) + \n  geom_point(aes(colour = x2))\n\n\nmod1 <- lm(y ~ x1 + x2, data = sim3)\n\n# y ~ x1 * x2 est traduit par y = a_0 + a_1 * x1 + a_2 * x2 + a_12 * x1 * x2 (interaction x1 et x2)\ngrid <- sim3 %>% \n  data_grid(x1, x2) %>% \n  gather_predictions(mod1, mod2)\n\n\nggplot(sim3, aes(x1, y, colour = x2)) + \n  geom_point() + \n  geom_line(data = grid, aes(y = pred)) + \n  facet_wrap(~ model)\n\n\nsim3 <- sim3 %>% \n  gather_residuals(mod1, mod2)\n\n\nggplot(sim3, aes(x1, resid, colour = x2)) + \n  geom_point() + \n  facet_grid(model ~ x2)\n\n\n#Interactions (two continuous)\nmod1 <- lm(y ~ x1 + x2, data = sim4)\nmod2 <- lm(y ~ x1 * x2, data = sim4)\n\ngrid <- sim4 %>% \n  data_grid(\n    x1 = seq_range(x1, 5), \n    x2 = seq_range(x2, 5) \n  ) %>% \n  gather_predictions(mod1, mod2)\nmod2 <- lm(y ~ x1 * x2, data = sim3)\n\n\nggplot(grid, aes(x1, x2)) + \n  geom_tile(aes(fill = pred)) + \n  facet_wrap(~ model)\n\n\n###########\"\" Transformations (utilisation de spline)\ndf <- tribble(\n  ~y, ~x,\n  1,  1,\n  2,  2, \n  3,  3\n)\n\nlibrary(splines)\nmodel_matrix(df, y ~ x^2 + x)\nmodel_matrix(df, y ~ I(x^2) + x)\nmodel_matrix(df, y ~ poly(x, 3))\nmodel_matrix(df, y ~ ns(x, 2))\n\n\nsim5 <- tibble(\n  x = seq(0, 3.5 * pi, length = 50),\n  y = 4 * sin(x) + rnorm(length(x))\n)\n\nggplot(sim5, aes(x, y)) +\n  geom_point()\n",
+    "created" : 1503479985881.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2162972823",
+    "id" : "916AA7F7",
+    "lastKnownWriteTime" : 19002432,
+    "last_content_update" : 1503664693502,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

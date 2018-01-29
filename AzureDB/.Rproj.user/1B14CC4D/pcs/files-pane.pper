@@ -1,0 +1,9 @@
+{
+    "path" : "D:/tmp/AzureDB",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

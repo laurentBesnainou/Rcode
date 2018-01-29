@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1495195534557.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C8D276EB",
+    "lastKnownWriteTime" : 12666726139297794,
+    "last_content_update" : 1495195534557,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "AD34A26B",
+        "caption" : "Presidentielle_2017_Resultats_Tour_2",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Presidentielle_2017_Resultats_Tour_2&cache_key=AD34A26B",
+        "displayedObservations" : "96",
+        "environment" : "",
+        "object" : "Presidentielle_2017_Resultats_Tour_2",
+        "preview" : "0",
+        "totalObservations" : "96",
+        "variables" : "28"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

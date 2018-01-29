@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(treemap)\nlibrary(highcharter)\nset.seed(12345)\n\nlevel1 <- letters[1:3]\nlevel2 <- as.character(1:2)\nlevel3 <- c(\"AA\", \"BB\")\n\ndf <- expand.grid(level1, level2, level3)\n\ndf$size1 <- sample(20, nrow(df), replace=T)\ndf$color1 <- sample(20, nrow(df), replace=T)\n\n\ntm <- treemap(df, index = c(\"Var1\", \"Var2\", \"Var3\"),\n              vSize = \"size1\", vColor = \"color1\",\n              type = \"value\")\n\nhc_tm <- highchart(height = 200) %>% \n  hctreemap(tm, allowDrillToNode = TRUE,\n                        layoutAlgorithm = \"squarified\",\n                        name = \"tmdata\")\nhc_tm\n\ndata(GNI2014)\n\nlibrary(\"viridis\")\ntm <- treemap(GNI2014, index = c(\"continent\", \"iso3\"),\n                            vSize = \"population\", vColor = \"GNI\",\n                             type = \"comp\", palette = rev(viridis(6)),\n                             draw = FALSE)\n\nhctreemap(tm, allowDrillToNode = TRUE, layoutAlgorithm = \"squarified\") %>% \n     hc_title(text = \"Gross National Income World Data\") %>% \n      hc_tooltip(pointFormat = \"<b>{point.name}</b>:<br>\n                                Pop: {point.value:,.0f}<br>\n                                GNI: {point.valuecolor:,.0f}\")\n\n\ntreemap(spending, #Your data frame object\n        index=c(\"Agency.Name\",\"Bureau.Name\",\"Account.Name\"),  #A list of your categorical variables\n        vSize = \"X2017\",  #This is your quantitative variable\n        type=\"index\", #Type sets the organization and color scheme of your treemap\n        palette = \"Reds\",  #Select your color palette from the RColorBrewer presets or make your own.\n        title=\"Spending in President Obama's 2017 Budget\", #Customize your title\n        fontsize.title = 14 #Change the font size of the title\n)\n\n\n\n\nmpgman3 <- mpg %>% \n  group_by(manufacturer) %>% \n  summarise(n = n(), unique = length(unique(model))) %>% \n  arrange(-n, -unique) %>% \n  glimpse()\n## Observations: 15\n## Variables: 3\n## $ manufacturer <chr> \"dodge\", \"toyota\", \"volkswagen\", \"ford\", \"chevrol...\n## $ n            <int> 37, 34, 27, 25, 19, 18, 14, 14, 13, 9, 8, 5, 4, 4, 3\n## $ unique       <int> 4, 6, 4, 4, 4, 3, 2, 2, 3, 1, 1, 1, 1, 1, 1\n\nhchart(mpgman3, \"treemap\", hcaes(x = manufacturer, value = n, color = unique))\n\n\n\n\nlibrary(treemap)\nlibrary(d3Tree)\n\ndata(business)\nbusiness$employees.growth <- business$employees - business$employees.prev\n\ntm <- # Brewer's Red-White-Grey palette reversed with predefined range\n  treemap(business,\n          index=c(\"NACE1\", \"NACE2\"),\n          vSize=\"employees\",\n          vColor=\"employees.growth\",\n          type=\"value\",\n          palette=\"-RdGy\",\n          range=c(-30000,30000))\n\nd3tree2( tm, rootname = \"World\" )\nlibrary(googleVis)\n\n\nTree <- gvisTreeMap(Regions,  idvar=\"Region\", parentvar=\"Parent\",\n                    sizevar=\"Val\", colorvar=\"Fac\")\nplot(Tree)\n\n\nTree2 <- gvisTreeMap(Regions,  \"Region\", \"Parent\", \"Val\", \"Fac\",\n                     options=list(width=600, height=500,\n                                  fontSize=16,\n                                  minColor='#EDF8FB',\n                                  midColor='#66C2A4',\n                                  maxColor='#006D2C',\n                                  headerHeight=20,\n                                  fontColor='black',\n                                  showScale=TRUE))\n\nplot(Tree2)",
+    "created" : 1501247232686.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1308693501",
+    "id" : "2E076362",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1501257018955,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

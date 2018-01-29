@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(shinyBS)\n\nshinyApp(\n  ui =\n    fluidPage(\n      sidebarLayout(\n        sidebarPanel(\n          sliderInput(\"bins\",\n                      \"Number of bins:\",\n                      min = 1,\n                      max = 50,\n                      value = 30),\n          actionButton(\"tabBut\", \"View Table\")\n        ),\n        \n        mainPanel(\n          plotOutput(\"distPlot\"),\n          bsModal(\"modalExample\", \"Data Table\", \"tabBut\", size = \"large\",\n                  dataTableOutput(\"distTable\"))\n        )\n      )\n    ),\n  server =\n    function(input, output, session) {\n      \n      output$distPlot <- renderPlot({\n        \n        x    <- faithful[, 2]\n        bins <- seq(min(x), max(x), length.out = input$bins + 1)\n        \n        # draw the histogram with the specified number of bins\n        hist(x, breaks = bins, col = 'darkgray', border = 'white')\n        \n      })\n      \n      output$distTable <- renderDataTable({\n        \n        x    <- faithful[, 2]\n        bins <- seq(min(x), max(x), length.out = input$bins + 1)\n        \n        # draw the histogram with the specified number of bins\n        tab <- hist(x, breaks = bins, plot = FALSE)\n        tab$breaks <- sapply(seq(length(tab$breaks) - 1), function(i) {\n          paste0(signif(tab$breaks[i], 3), \"-\", signif(tab$breaks[i+1], 3))\n        })\n        tab <- as.data.frame(do.call(cbind, tab))\n        colnames(tab) <- c(\"Bins\", \"Counts\", \"Density\")\n        return(tab[, 1:3])\n        \n      }, options = list(pageLength=10))\n      \n    }\n)\n\nThis project i\n",
+    "created" : 1499791500560.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3226906854",
+    "id" : "410CC3CE",
+    "lastKnownWriteTime" : 30681274979123311,
+    "last_content_update" : 1499791912071,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "server <- function(input, output) { \n  \n  output$connaissance_associes <- renderPlot({\n    \n    my_answer <- questionnaire_associe %>% \n      filter(Question == q1_str, ID_consultant == input$consultant_id) %>% \n      select(- Question) %>% \n      mutate(my_answer = 1) %>% \n      mutate(response = factor(response),\n             Associe = factor(Associe))\n    \n    q1_count <- questionnaire_associe %>% \n      filter(Question == q1_str) %>% \n      select(- Question) %>% \n      group_by(Associe, response) %>% \n      summarise(COUNT = n()) %>% \n      ungroup() %>% \n      mutate(response = factor(response),\n             Associe = factor(Associe)) %>% \n      left_join(my_answer, by = c(\"Associe\", \"response\")) %>% \n      replace_na(list(my_answer = 0)) %>% \n      mutate(my_label = ifelse(my_answer == 1, \"ici\", \"\")) %>% \n      mutate(my_answer = factor(my_answer))\n    \n    q1_count %>% \n      ggplot(aes(x = Associe, y = COUNT, fill = response, \n                 colour = my_answer)) +\n      geom_bar(stat = \"identity\", position = \"dodge\") +\n      geom_text(aes(label = my_label), position = position_dodge(width = 0.9), \n                vjust = -0.5, hjust = 0.5) +\n      labs(x = \"\",\n           y = \"Nombre de consultants\",\n           fill = \"\") +\n      guides(colour=FALSE) +\n      theme_bw()\n    \n  })\n  \n}",
+    "created" : 1485868793031.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1917329319",
+    "id" : "BBAA3C3A",
+    "lastKnownWriteTime" : 1485871820,
+    "last_content_update" : 1485871820148,
+    "path" : "~/Desktop/projet_PR/pr_app/server.R",
+    "project_path" : "pr_app/server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

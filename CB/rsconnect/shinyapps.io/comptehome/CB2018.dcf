@@ -1,0 +1,12 @@
+name: CB2018
+title: CB2018
+username:
+account: comptehome
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 256363
+bundleId: 1173294
+url: https://comptehome.shinyapps.io/CB2018/
+when: 1515758900.70216
+asMultiple: FALSE
+asStatic: FALSE

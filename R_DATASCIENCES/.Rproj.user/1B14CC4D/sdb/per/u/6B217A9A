@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(tidyverse)\nlibrary(modelr)\noptions(na.action = na.warn)\n\nlibrary(nycflights13)\nlibrary(lubridate)\n\nflights\ndaily <- flights %>% \n  mutate(date = make_date(year, month, day)) %>% \n  group_by(date) %>% \n  summarise(n = n())\n\n\nggplot(daily, aes(date, n)) + \n  geom_line()\n\n\n#on ajoute le jour de la semaine\ndaily <- daily %>% \n  mutate(wday = wday(date, label = TRUE))\nmod <- lm(n ~ wday, data = daily)\n\n\ngrid <- daily %>% \n  data_grid(wday) %>% \n  add_predictions(mod, \"n\")\n\n\n\nby_country <- daily %>% \n  group_by(wday) %>% \n  nest()\n\nby_country$data[[1]]\n",
+    "created" : 1503495913588.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1912155649",
+    "id" : "6B217A9A",
+    "lastKnownWriteTime" : 8243607616785179238,
+    "last_content_update" : 1503497281160,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

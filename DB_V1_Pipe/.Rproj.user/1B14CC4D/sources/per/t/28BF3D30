@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1506427423236.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "28BF3D30",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1506427423236,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "dd22ff2c05ec4f3986bb61fa8db42977",
+        "name" : "nom",
+        "title" : "nom"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

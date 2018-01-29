@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### https://data.cdrc.ac.uk/tutorial/aa5491c9-cbac-4026-97c9-f9168462f4ac/70c4bc61-0475-4806-9240-4ef1fa649a06\n### DATA : https://www.data.gouv.fr/fr/datasets/contours-des-departements-francais-issus-d-openstreetmap/\n\n# Load packages\nlibrary(\"rgdal\")\nlibrary(\"rgeos\")\nlibrary(tmap)\nlibrary(leaflet)\n  \nCensus.Data <-read.csv(\"practicaldata.csv\")\n# Load the output area shapefiles\nOutput.Areas<- readOGR(\".\", \"Camden_oa11\")\n# plots the shapefile\nplot(Output.Areas)\n# joins data to the shapefile\nOA.Census <- merge(Output.Areas, Census.Data, by.x=\"OA11CD\", by.y=\"OA\")\n# this will prodyce a quick map of our qualification variable\nqtm(OA.Census, fill = \"Qualification\")\n\n\n# Creates a simple choropleth map of our qualification variable\ntm_shape(OA.Census) + tm_fill(\"Qualification\") \ncolnames(Presidentielle_2017_Resultats_Tour_2) <- c(\"dep\",\"nom\",\"Inscrits\",\"Abstentions\",\"AbsSurIns\",\"Votants\",\n                                                    \"VotSurIns\",\"Blancs\",\"BlancsSurIns\",\"BlancsSurVot\",\"Nuls\",\"NulsSurIns\",\n                                                    \"NulsSurVot\",\"Exprimes\",\"ExpSurIns\",\"ExpSurVot\",\n                                                    \"P1Sexe\",\"P1Nom\",\"P1Prénom\",\"P1Voix\",\"P1VoixSurIns\",\"P1VoixSurExp\",\n                                                    \"P2Sexe\",\"P2Nom\",\"P2Prénom\",\"P2Voix\",\"P2VoixSurIns\",\"P2VoixSurExp\"\n                                                    )\n\nPresidentielle_2017_Resultats_Tour_2 <- Presidentielle_2017_Resultats_Tour_2[-c(97:106), ]\n\noutPut.France <- readOGR(\".\", \"departements-20170102\")\nOA.1 <- merge(outPut.France, Presidentielle_2017_Resultats_Tour_2, by.x=\"code_insee\", by.y=\"Dep\")\ndt <- OA.1@data\n\n# plots the shapefile\nplot(outPut.France)\nhead(str(outPut.France))\n\n  Presidentielle_2017_Resultats_Tour_2$Nom\n\n  \n  outPut.France@data %>% filter ()\n  \nformat(x, digits=2, nsmall=2)",
+    "created" : 1495193880613.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2846594252",
+    "id" : "53236676",
+    "lastKnownWriteTime" : 1495193919,
+    "last_content_update" : 1495197146022,
+    "path" : "D:/tmp/leaflet/main.R",
+    "project_path" : "main.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

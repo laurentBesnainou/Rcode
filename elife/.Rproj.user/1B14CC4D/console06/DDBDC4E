@@ -1,0 +1,60 @@
+[0m[0K]0;:/d/tmp/elife[?25l
+[0;32mlbe@W0100043 [0;35m [0;33m/d/tmp/elife[0m[0K
+$[0K[3G[?25h[?25l$ l[0K[?25hs[0K[?25l
+[0K[?25helife.Rproj  ggtree.css  server.R  ui.R  www[0K[?25l
+[0K[?25h[?25l
+[0;32mlbe@W0100043 [0;35m [0;33m/d/tmp/elife[0m[0K
+$[0K[3G[?25h[?25l$ s[0K[?25hu[0Kd[0Ko[0K[?25l
+[0K[?25hbash: sudo: command not found[0K[?25l
+[0K[?25h[?25l
+[0;32mlbe@W0100043 [0;35m [0;33m/d/tmp/elife[0m[0K
+$[0K[3G[?25h[?25l$ h[0K[?25he[0Kl[0Kp[0K[?25l
+GNU bash, version 4.3.42(5)-release (x86_64-pc-msys)[0K
+These shell commands are defined internally.  Type `help' to see this list.[0K
+Type `help name' to find out more about the function `name'.[0K
+Use `info bash' to find out more about the shell in general.[0K
+Use `man -k' or `info' to find out more about commands not in this list.[0K
+[0K
+A star (*) next to a name means that the command is disabled.[0K
+[0K
+ job_spec [&]                                                        history [-c] [-d offset] [n] or history -anrw [filename] or hist>[0K
+ (( expression ))                                                    if COMMANDS; then COMMANDS; [ elif COMMANDS; then COMMANDS; ]...>[0K
+ . filename [arguments]                                              jobs [-lnprs] [jobspec ...] or jobs -x command [args][0K
+ :                                                                   kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or ki>[0K
+ [ arg... ]                                                          let arg [arg ...][0K
+ [[ expression ]]                                                    local [option] name[=value] ...[0K
+ alias [-p] [name[=value] ... ]                                      logout [n][0K
+ bg [job_spec ...]                                                   mapfile [-n count] [-O origin] [-s count] [-t] [-u fd] [-C callb>[0K
+ bind [-lpsvPSVX] [-m keymap] [-f filename] [-q name] [-u name] [->  popd [-n] [+N | -N][0K
+ break [n]                                                           printf [-v var] format [arguments][0K
+ builtin [shell-builtin [arg ...]]                                   pushd [-n] [+N | -N | dir][0K
+ caller [expr]                                                       pwd [-LPW][0K
+ case WORD in [PATTERN [| PATTERN]...) COMMANDS ;;]... esac          read [-ers] [-a array] [-d delim] [-i text] [-n nchars] [-N ncha>[0K
+ cd [-L|[-P [-e]] [-@]] [dir]                                        readarray [-n count] [-O origin] [-s count] [-t] [-u fd] [-C cal>[0K
+ command [-pVv] command [arg ...]                                    readonly [-aAf] [name[=value] ...] or readonly -p[0K
+ compgen [-abcdefgjksuv] [-o option]  [-A action] [-G globpat] [-W>  return [n][0K
+ complete [-abcdefgjksuv] [-pr] [-DE] [-o option] [-A action] [-G >  select NAME [in WORDS ... ;] do COMMANDS; done[0K
+ compopt [-o|+o option] [-DE] [name ...]                             set [-abefhkmnptuvxBCHP] [-o option-name] [--] [arg ...][0K
+ continue [n]                                                        shift [n][0K
+ coproc [NAME] command [redirections]                                shopt [-pqsu] [-o] [optname ...][0K
+ declare [-aAfFgilnrtux] [-p] [name[=value] ...]                     source filename [arguments][0K
+ dirs [-clpv] [+N] [-N]                                              suspend [-f][0K
+ disown [-h] [-ar] [jobspec ...]                                     test [expr][0K
+ echo [-neE] [arg ...]                                               time [-p] pipeline[0K
+ enable [-a] [-dnps] [-f filename] [name ...]                        times[0K
+ eval [arg ...]                                                      trap [-lp] [[arg] signal_spec ...][0K
+ exec [-cl] [-a name] [command [arguments ...]] [redirection ...]    true[0K
+ exit [n]                                                            type [-afptP] name [name ...][0K
+ export [-fn] [name[=value] ...] or export -p                        typeset [-aAfFgilrtux] [-p] name[=value] ...[0K
+ false                                                               ulimit [-SHabcdefilmnpqrstuvxT] [limit][0K
+ fc [-e ename] [-lnr] [first] [last] or fc -s [pat=rep] [command]    umask [-p] [-S] [mode][0K[1G[?25h[?25l
+ fg [job_spec]                                                       unalias [-a] name [name ...][0K
+ for NAME [in WORDS ... ] ; do COMMANDS; done                        unset [-f] [-v] [-n] [name ...][0K
+ for (( exp1; exp2; exp3 )); do COMMANDS; done                       until COMMANDS; do COMMANDS; done[0K
+ function name { COMMANDS ; } or name () { COMMANDS ; }              variables - Names and meanings of some shell variables[0K
+ getopts optstring name [arg]                                        wait [-n] [id ...][0K
+ hash [-lr] [-p pathname] [-dt] [name ...]                           while COMMANDS; do COMMANDS; done[0K
+ help [-dms] [pattern ...]                                           { COMMANDS ; }[0K
+[0K[?25h[?25l
+[0;32mlbe@W0100043 [0;35m [0;33m/d/tmp/elife[0m[0K
+$[0K[3G[?25h

@@ -1,0 +1,94 @@
+ETAT,NOM,PRENOM,DATENAISSANCE,AGE,SEXE,GRADE_2016,GRADE_2015,DATE_ENTREE,ANCIENNETE,COACH_2016,COACH_2015,DATE_PREVIFIN_PE2,DATE_PREVIFIN_PE1,DATESORTIE
+Présent,AUDINET,Pauline,33443,25.0,F,2-Consultant,NA,2016-04-04T00:00:00Z,0.5929645364028434,Anthony Régent,"NA",NA,NA,NA
+Sortie,BENSUSSAN,Raphael,33140,26.0,M,3-Confirmé,3-Confirmé,2015-10-05T00:00:00Z,0.5808219178082191,Laurent Pernel,Laurent Pernel,NA,42404.0,2016-05-03T23:50:39Z
+Présent,BERGER,Damien,31878,30.0,M,4-Sénior,3-Confirmé,2015-10-05T00:00:00Z,1.0915946733891446,Jean-Patrick Girard,Mélanie Brunella,NA,NA,NA
+Présent,BESNAINOU,Laurent,08/05/1969,48.0,M,4-Sénior,4-Sénior,2000-01-17T00:00:00Z,16.817622070649417,Nicolas Quesnoit,Nicolas Quesnoit,NA,NA,NA
+Présent,BEYLLE,Juliette,32953,27.0,F,4-Sénior,3-Confirmé,2013-03-04T00:00:00Z,3.6806357692795557,Moez Louati,Moez Louati,NA,NA,NA
+Présent,BOULAYE (de la),Victoire,31812,30.0,F,3-Confirmé,2-Consultant,2014-09-28T00:00:00Z,2.1107727555809257,Mélanie Brunella,Mélanie Brunella,NA,NA,NA
+Présent,BOUTOILLE,Marc,29123,37.0,M,6-Sénior Manager,6-Sénior Manager,2009-10-19T00:00:00Z,7.05597823503298,Olivier Reisse,Thomas Papadopoulos,NA,NA,NA
+Présent,BRUNAT,Romain,33626,25.0,M,2-Consultant,1-Stagiaire,2016-02-08T00:00:00Z,0.7463891939370899,Grégory Denis,"NA",NA,NA,NA
+Sortie,BRUNELLA,Mélanie,29827,35.0,F,5-Manager,5-Manager,2011-01-10T00:00:00Z,5.64931506849315,Olivier Reisse,Thomas Papadopoulos,NA,NA,2016-09-01T23:50:39Z
+Sortie,CAUVIN,Jonathan,42645,0.0,M,1-Stagiaire,NA,2016-05-02T00:00:00Z,0.4986301369863014,Junel Popp,"NA",NA,NA,2016-10-30T23:50:39Z
+Sortie,CHANU,Jean-Baptiste,32196,29.0,M,1-Stagiaire,NA,2016-05-02T00:00:00Z,0.4986301369863014,Tiphaine Lorant,"NA",NA,NA,2016-10-30T23:50:39Z
+Présent,CHARLY,Guillaume,02/01/1969,48.0,M,8-Associé,8-Associé,2013-03-18T00:00:00Z,3.642279604895994,-,-,NA,NA,NA
+Présent,CHOUAI,Abdelilah ,32176,29.0,M,4-Sénior,3-Confirmé,2015-09-01T00:00:00Z,1.1847453583206515,Jean-Patrick Girard,Aude Saboul,NA,NA,NA
+Sortie,CIUTI,Fabrice,NA,NA,M,8-Associé,NA,2016-04-04T00:00:00Z,0.3232876712328767,-,"NA",NA,NA,2016-07-30T23:50:39Z
+Présent,COICAULT,Clément,31360,31.0,M,4-Sénior,3-Confirmé,2013-09-02T00:00:00Z,3.1820056322932544,Marc Boutoille,Laurent Pernel,NA,NA,NA
+Présent - PE,COLLUMEAU,Aurore,NA,NA,F,3-Confirmé,NA,2016-09-05T00:00:00Z,0.1710467281836653,Aude Saboul,"NA",42828.0,42739.0,NA
+Sortie,DAVARPANAH,Cyrus,NA,NA,M,D1-Data Scientist,NA,2016-02-01T00:00:00Z,0.4958904109589041,Pirmin Lemberger ,"NA",NA,NA,2016-07-30T23:50:39Z
+Présent,DENIS,Grégory ,29025,37.0,M,5-Manager,4-Sénior,2015-10-05T00:00:00Z,1.0915946733891446,Julien Soyer,Jean-Patrick Girard,NA,NA,NA
+Présent,DIAS,François,NA,NA,M,2-Consultant,1-Stagiaire,2016-04-04T00:00:00Z,0.5929645364028434,Clément Coicault,Mounthei Kham,NA,NA,NA
+Présent,DOUTREMEPUICH,Julien,29812,35.0,M,5-Manager,4-Sénior,2014-07-01T00:00:00Z,2.354608372019282,François Gourichon,Jean-Patrick Girard,NA,NA,NA
+Sortie,DUBEDOUT,Ariane,32720,27.0,F,4-Sénior,3-Confirmé,2012-11-01T00:00:00Z,3.915068493150685,Jonathan Vercruysse,Jonathan Vercruysse,NA,NA,2016-09-29T23:50:39Z
+Présent - PE,DUFOREST,Maud,07/02/1991$,NA,F,2-Consultant,2-Consultant,2016-05-02T00:00:00Z,0.5162522076357201,Sylvain Marty,"NA",42717.0,42626.0,NA
+Présent,ESCARGUEL,Brice,28384,39.0,M,8-Associé,7-Directeur,2014-04-14T00:00:00Z,2.568307002156268,Olivier Grandjean,Olivier Grandjean,NA,NA,NA
+Présent,FAIBIS,Benjamin ,32860,27.0,M,5-Manager,3-Confirmé,2016-02-22T00:00:00Z,0.7080330295535283,Laurent Pernel,"NA",NA,NA,NA
+Présent,GALL,Pierrick,33013,26.0,M,3-Confirmé,2-Consultant,2014-09-01T00:00:00Z,2.1847453583206518,Grégory Denis,Laurent Pernel,NA,NA,NA
+Présent,GASCON,Tiphaine,31623,30.0,F,4-Sénior,3-Confirmé,2014-09-01T00:00:00Z,2.1847453583206518,Marc Morel,Mélanie Brunella,NA,NA,NA
+Présent,GASCUEL,Xavier,33774,24.0,M,2-Consultant,2-Consultant,2015-04-20T00:00:00Z,1.5518686459918845,Michael Sutter,Michael Sutter,NA,NA,NA
+Présent - Stagiaire,GAUTHIER,Mathilde,NA,NA,F,1-Stagiaire,NA,2016-09-19T00:00:00Z,0.13269056380010363,Martin Lauquin,NA,42842.0,42753.0,NA
+Départ prévu,GIGANT,Anne-Claire,31087,32.0,F,4-Sénior,4-Sénior,2011-09-05T00:00:00Z,5.17652618023846,Thibault Hudry,Brice Escarguel,NA,NA,2016-11-29T23:50:39Z
+Présent,GIRARD,Jean-Patrick,29917,35.0,M,7-Directeur,6-Sénior Manager,2010-05-03T00:00:00Z,6.518991933663117,Olivier Reisse,Olivier Reisse,NA,NA,NA
+Présent,GIULIANI,Marc-Antoine,31258,31.0,M,D1-Data Scientist,D1-Data Scientist,2015-11-02T00:00:00Z,1.0148823446220214,Pirmin Lemberger ,Pirmin Lemberger ,NA,NA,NA
+Départ prévu,GOURICHON,François,28033,40.0,M,7-Directeur,7-Directeur,2014-04-28T00:00:00Z,2.5299508377727062,Julien Soyer,Julien Soyer,NA,NA,2016-12-30T23:50:39Z
+Sortie,GOURINEL,Guillaume,32641,28.0,M,3-Confirmé,3-Confirmé,2013-05-04T00:00:00Z,3.243835616438356,Grégory Denis,Marc Boutoille,NA,NA,2016-07-30T23:50:39Z
+Présent,GRANDJEAN,Olivier,26555,44.0,M,8-Associé,8-Associé,2007-02-01T00:00:00Z,9.771046728183665,-,-,NA,NA,NA
+Sortie,HOCHAR,Cédric ,34176,23.0,M,0-BizCatalyst,0-BizCatalyst,2015-08-24T00:00:00Z,0.5095890410958904,-,-,NA,NA,2016-02-25T23:50:39Z
+Présent,HUDRY,Thibault,25679,47.0,M,7-Directeur,7-Directeur,2015-10-01T00:00:00Z,1.1025535774987338,Olivier Grandjean,Olivier Grandjean,NA,NA,NA
+Présent,HUREAU,Quentin,32971,27.0,M,2-Consultant,2-Consultant,2015-09-01T00:00:00Z,1.1847453583206515,Aude Saboul,Aude Saboul,NA,NA,NA
+Sortie,KHAM,Mounthei,30005,35.0,M,4-Sénior,4-Sénior,2008-10-01T00:00:00Z,7.926027397260274,Marc Boutoille,Marc Boutoille,NA,NA,2016-09-01T23:50:39Z
+Sortie,KHEMISSA,Sabri,27925,40.0,M,5-Manager,5-Manager,2008-03-17T00:00:00Z,8.463013698630137,Fabrice Ciuti,Olivier Reisse,NA,NA,2016-08-30T23:50:39Z
+Sortie,LAGABBE,Jonathan,32644,27.0,M,2-Consultant,2-Consultant,2015-01-05T00:00:00Z,1.7945205479452055,Matthieu Salles,Matthieu Salles,NA,NA,2016-10-20T23:50:39Z
+Présent,LANFRANCHI,Margaux,32677,27.0,F,3-Confirmé,2-Consultant,2015-01-05T00:00:00Z,1.8395398788685968,Moez Louati,Moez Louati,NA,NA,NA
+Présent - PE,LAUQUIN,Martin,NA,NA,M,5-Manager,NA,2016-09-05T00:00:00Z,0.1710467281836653,Olivier Reisse,"NA",42828.0,42739.0,NA
+Présent,LE CALLONNEC,Manfred,NA,NA,M,2-Consultant,NA,2016-11-02T00:00:00Z,0.012142618594624179,Jacques Lefebvre,NA,42886.0,42795.0,NA
+Présent,LEFEBVRE,Jacques,16/11/1969,47.0,M,5-Manager,5-Manager,2015-09-21T00:00:00Z,1.1299508377727063,Julien Soyer,Julien Soyer,NA,NA,NA
+Présent,LEMBERGER,Pirmin ,31/01/XXXX,NA,M,D3-Data Scientist,D3-Data Scientist,2015-11-02T00:00:00Z,1.0148823446220214,Olivier Reisse,Olivier Reisse,NA,NA,NA
+Présent,LEPAN,Jonathan,29663,36.0,M,6-Sénior Manager,6-Sénior Manager,2009-04-20T00:00:00Z,7.554608372019282,Guillaume Charly,Guillaume Charly,NA,NA,NA
+Sortie,LIMODIN,Clément,31592,30.0,M,4-Sénior,3-Confirmé,2011-09-19T00:00:00Z,4.978082191780822,Jonathan Vercruysse ,Jean-Patrick Girard,NA,NA,2016-09-08T23:50:39Z
+Présent,LISSOIR,Bénédicte ,33453,25.0,F,2-Consultant,2-Consultant,2015-04-07T00:00:00Z,1.5874850843480488,Anthony Régent,Sabri Khemissa,NA,NA,NA
+Présent,LORANT,Tiphaine,32936,27.0,F,4-Sénior,3-Confirmé,2013-09-16T00:00:00Z,3.1436494679096927,Jonathan Lepan,Jean-Patrick Girard,NA,NA,NA
+Présent,LOUATI,Moez,30055,35.0,M,6-Sénior Manager,5-Manager,2013-07-01T00:00:00Z,3.354608372019282,Olivier Grandjean,Julien Soyer,NA,NA,NA
+Sortie,LOZE,François,32766,27.0,M,2-Consultant,NA,2016-01-04T00:00:00Z,0.2328767123287671,Sabri Khemissa,"NA",NA,NA,2016-03-28T23:50:39Z
+Présent,MAILLARD,Julie,32694,27.0,F,3-Confirmé,2-Consultant,2014-09-01T00:00:00Z,2.1847453583206518,Jacques Lefebvre,Jonathan Vercruysse,NA,NA,NA
+Présent,MALOSSE,Sandy,33138,26.0,F,2-Consultant,2-Consultant,2015-03-02T00:00:00Z,1.6861152213343502,Matthieu Salles,Matthieu Salles,NA,NA,NA
+Présent,MARTY,Sylvain,29934,35.0,M,5-Manager,5-Manager,2015-09-01T00:00:00Z,1.1847453583206515,François Gourichon,François Gourichon,NA,NA,NA
+Sortie,MOMSON,Marie,30882,32.0,F,3-Confirmé,2-Consultant,2014-09-01T00:00:00Z,2.063013698630137,Nourallah Seddiki,Sabri Khemissa,NA,NA,2016-09-22T23:50:39Z
+Présent - PE,MOREL,Marc,NA,NA,M,8-Associé,NA,2016-06-20T00:00:00Z,0.3820056322932543,-,"NA",42767.0,42676.0,NA
+Présent,MOREON,Bernard,26086,45.0,M,7-Directeur,7-Directeur,2014-07-23T00:00:00Z,2.294334399416542,Guillaume Charly,Guillaume Charly,NA,NA,NA
+Présent - PE,MORISSEAU,Gérald,NA,NA,M,A1-Arch Exp,NA,2016-10-03T00:00:00Z,0.09433439941654198,Antoine Samaha,"NA",42856.0,42768.0,NA
+Présent,MUR,Alexandre,31766,30.0,M,4-Sénior,3-Confirmé,2014-04-22T00:00:00Z,2.54638919393709,Jonathan Vercruysse,Nicolas Quesnoit,NA,NA,NA
+Sortie,NAQUET RADIGUET,Sixtine ,32678,27.0,F,3-Confirmé,3-Confirmé,2015-06-01T00:00:00Z,1.3534246575342466,Sylvain Marty,Jonathan Lepan,NA,NA,2016-10-06T23:50:39Z
+Sortie,PAPADOPOULOS,Thomas,27655,41.0,M,8-Associé,8-Associé,2014-04-22T00:00:00Z,2.191780821917808,-,-,NA,NA,2016-06-29T23:50:39Z
+Sortie,PASSEMARD,Jimmy,31642,30.0,M,2-Consultant,2-Consultant,2014-04-28T00:00:00Z,2.063013698630137,Moez Louati,Moez Louati,NA,NA,2016-05-19T23:50:39Z
+Présent - PE,PEETERS,Jacques,NA,NA,M,D1-Data Scientist,NA,2016-10-03T00:00:00Z,0.09433439941654198,Pirmin Lemberger ,"NA",42856.0,42768.0,NA
+Présent,PERNEL,Laurent,30642,33.0,M,5-Manager,5-Manager,2010-07-01T00:00:00Z,6.357348098046679,Bernard Moreon,François Gourichon,NA,NA,NA
+Présent,PERNET,Eymeline ,31898,30.0,F,4-Sénior,NA,2016-01-04T00:00:00Z,0.8422796048959941,Moez Louati,"NA",NA,NA,NA
+Présent - PE,PETIT,Antoine,NA,NA,M,3-Confirmé,NA,2016-10-03T00:00:00Z,0.09433439941654198,Laurent Pernel,NA,42856.0,42768.0,NA
+Présent,POPP,Junel,32471,28.0,F,4-Sénior,4-Sénior,2015-10-05T00:00:00Z,1.0915946733891446,Jonathan Lepan,Jonathan Lepan,NA,NA,NA
+Sortie,PRIGENT-KAROUBI,Hélène ,32479,28.0,F,3-Confirmé,3-Confirmé,2014-09-15T00:00:00Z,1.6027397260273972,Jonathan Vercruysse,Jonathan Vercruysse,NA,NA,2016-04-21T23:50:39Z
+Présent,QUESNOIT,Nicolas,26847,43.0,M,6-Sénior Manager,6-Sénior Manager,2003-03-03T00:00:00Z,13.691594673389146,Thibault Hudry,Bernard Moreon,NA,NA,NA
+Présent,REGENT,Anthony ,30687,33.0,M,5-Manager,5-Manager,2015-07-02T00:00:00Z,1.3518686459918845,Olivier Reisse,Olivier Reisse,NA,NA,NA
+Présent,REISSE,Olivier,25570,47.0,M,8-Associé,8-Associé,2002-11-01T00:00:00Z,14.025841248731611,-,-,NA,NA,NA
+Sortie,RENOUT,Julien,32919,27.0,M,3-Confirmé,2-Consultant,2014-09-15T00:00:00Z,1.5643835616438355,François Gourichon,François Gourichon,NA,NA,2016-04-07T23:50:39Z
+Présent - PE,ROCHE,Thomas,NA,NA,M,4-Sénior,NA,2016-06-06T00:00:00Z,0.42036179667681595,Jonathan Lepan,"NA",42753.0,42648.0,NA
+Présent,SABOUL,Aude,31223,31.0,F,5-Manager,5-Manager,2011-03-21T00:00:00Z,5.636800152841199,Bernard Moreon,Bernard Moreon,NA,NA,NA
+Présent,SALLES,Matthieu,31128,32.0,M,5-Manager,5-Manager,2009-12-01T00:00:00Z,6.938170015854898,Olivier Reisse,Brice Escarguel,NA,NA,NA
+Présent,SALOUM,Emile,33574,25.0,M,2-Consultant,2-Consultant,2015-03-02T00:00:00Z,1.6861152213343502,Julien Doutremepuich,Julien Doutremepuich,NA,NA,NA
+Présent,SAMAHA,Antoine,NA,NA,M,A2-Arch Exp Senior,NA,2016-04-04T00:00:00Z,0.5929645364028434,Julien Soyer,"NA",NA,NA,NA
+Sortie,SAQRI,Kaoutar,42435,1.0,F,0-BizCatalyst,NA,2016-02-01T00:00:00Z,0.4958904109589041,"NA","NA",NA,NA,2016-07-30T23:50:39Z
+Présent - PE,SARMADI,Paul-Darius,34053,24.0,M,D1-Data Scientist,NA,2016-09-05T00:00:00Z,0.1710467281836653,Pirmin Lemberger ,"NA",42828.0,42739.0,NA
+Présent,SEDDIKI,Nourallah,30585,33.0,M,5-Manager,5-Manager,2015-10-19T00:00:00Z,1.0532385090055831,Olivier Grandjean,Olivier Grandjean,NA,NA,NA
+Présent,SOYER,Julien,28279,39.0,M,8-Associé,8-Associé,2006-05-22T00:00:00Z,10.469676865169967,-,-,NA,NA,NA
+Présent,STURTZER,Renée-Laurie ,33081,26.0,F,2-Consultant,2-Consultant,2015-02-02T00:00:00Z,1.7628275501014734,Michael Sutter,Michael Sutter,NA,NA,NA
+Présent,SUCHAUD,Nicolas,32458,28.0,M,3-Confirmé,2-Consultant,2015-01-05T00:00:00Z,1.8395398788685968,Sylvain Marty,Brice Escarguel,NA,NA,NA
+Présent,SUTTER,Michael,31993,29.0,M,5-Manager,4-Sénior,2010-03-01T00:00:00Z,6.691594673389145,Thibault Hudry,Bernard Moreon,NA,NA,NA
+Présent - PE,TARDU,Edouard,30415,34.0,M,4-Sénior,NA,2016-04-04T00:00:00Z,0.5929645364028434,Jean-Patrick Girard,"NA",42695.0,42604.0,NA
+Présent,THION,Erwan,32838,27.0,M,3-Confirmé,2-Consultant,2014-01-06T00:00:00Z,2.8368001528411995,Nourallah Seddiki,Laurent Pernel,NA,NA,NA
+Présent,TRESOR,Olivier,12/12/1964,52.0,M,5-Manager,5-Manager,2006-06-20T00:00:00Z,10.390224810375447,Olivier Reisse,Olivier Reisse,NA,NA,NA
+Sortie,VALLA,Yoann,32157,29.0,M,4-Sénior,3-Confirmé,2014-06-23T00:00:00Z,2.063013698630137,Jonathan Lepan,Jonathan Lepan,NA,NA,2016-07-14T23:50:39Z
+Présent,VANHEECKHOET,Charles-Guillaume,31755,30.0,M,2-Consultant,2-Consultant,2015-09-01T00:00:00Z,1.1847453583206515,Aude Saboul,Aude Saboul,NA,NA,NA
+Sortie,VAUCELLE,Tiphaine,31860,30.0,F,3-Confirmé,3-Confirmé,2015-01-19T00:00:00Z,1.4109589041095891,Sabri Khemissa,Sabri Khemissa,NA,NA,2016-06-16T23:50:39Z
+Présent,VELTEN-JAMESON,Charles,33258,26.0,M,2-Consultant,2-Consultant,2015-10-05T00:00:00Z,1.0915946733891446,Michael Sutter,Mélanie Brunella,NA,NA,NA
+Présent,VERCRUYSSE,Jonathan,29054,37.0,M,6-Sénior Manager,5-Manager,2014-11-06T00:00:00Z,2.003923440512432,Olivier Grandjean,Olivier Grandjean,NA,NA,NA
+Présent,WILLMANN,Alexandre,26962,43.0,M,4-Sénior,4-Sénior,2012-09-24T00:00:00Z,4.121731659690514,Nicolas Quesnoit,Nicolas Quesnoit,NA,NA,NA

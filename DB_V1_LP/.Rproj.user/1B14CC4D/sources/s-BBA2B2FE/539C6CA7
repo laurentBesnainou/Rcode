@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1508256712985.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "539C6CA7",
+    "lastKnownWriteTime" : 7598543891112919040,
+    "last_content_update" : 1508256712985,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "21FAC74D",
+        "caption" : "Mission_Semaine",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Mission_Semaine&cache_key=21FAC74D",
+        "displayedObservations" : 5441,
+        "environment" : "",
+        "object" : "Mission_Semaine",
+        "preview" : 0,
+        "totalObservations" : 5441,
+        "variables" : 30
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

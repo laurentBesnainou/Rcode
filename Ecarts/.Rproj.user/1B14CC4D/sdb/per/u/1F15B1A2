@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(stringr)\n#fonction qui remplace dans les colonnes le xx -> yy par yy \nSplitColonne <- function(x){\n  strResultat <- strsplit(x,\"->\")\n  if (length(strResultat[[1]]) >1) {\n    SplitColonne <- strResultat[[1]][2]\n  } else {\n    SplitColonne <- x\n  }\n  trimws(SplitColonne)\n}\n\ndf <- data.frame(Colonne1=c(\"AA\",'aa->BB'),Colonne2=rep(\"A\",2))\n\ndf %>% mutate(Colonne1=SplitColonne(Colonne1))\n\n\nFruits\t\n## timevar Year\nM1 <- gvisMotionChart(Fruits, idvar=\"Fruit\", timevar=\"Year\")\nstr(M1)\n## print.gvis, will concatenate the list into a one long string\nM1",
+    "created" : 1490957431750.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3200683635",
+    "id" : "1F15B1A2",
+    "lastKnownWriteTime" : 2315732155208049267,
+    "last_content_update" : 1498214370898,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "m = leaflet() %>% addTiles()\nm  # a map with the default OSM tile layer\n\nm = m %>% setView(-93.65, 42.0285, zoom = 17)\nm\n\nm %>% addPopups(-93.65, 42.0285, 'Here is the <b>Department of Statistics</b>, ISU')\n\nlibrary(D3partitionR)\nseq2 <- pilotage_data %>% filter (STEP == \"4 - Gagnée\",WEEK==6) %>%\n  group_by(OFFRE_PRINCIPALE,ASSOCIE,SECTEUR,GROUPE, COMPTE) %>%\n  summarize(value = sum(CA_BT__N__KE,na.rm=TRUE)) %>%  ungroup() %>%\n  mutate (path= paste(\"BT\",ASSOCIE,OFFRE_PRINCIPALE,SECTEUR,GROUPE,COMPTE,sep=\"/\"))%>%\n  mutate (path= strsplit(path,\"/\")) %>%\n  select(path,value)\nseq2 <- data.frame(path=c(\"BT\",\"BT/A1\",\"BT/A2\"),\n                   value=c(100,55,45))\nseq2 <- seq2 %>%  mutate (path= strsplit(as.character(path),\"/\")) \n\nseq2 <- seq2[-1, ]\n\nD3partitionR(data=list(path=seq2$path,\n                       value=seq2$Value),type=\"treeMap\",\n             tooltipOptions = list(showAbsolutePercent=FALSE,showRelativePercent=FALSE),\n             legend=list(type=\"categorical\",color=list(\"step A\"=\"#0BA\",\"step B\"=\"#AA1\",\"step C\"=\"#ECC\")))\n\nD3partitionR(data = seq2 ,width=600,height=600,legend=list(type=\"sequential\",\n                                                color=list(B=\"#e8ae46\",C=\"#bf3a8e\")),title=list(text=\"My Title\"),trail=TRUE)\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "created" : 1486561013144.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "702529832",
+    "id" : "86B75397",
+    "lastKnownWriteTime" : 7072657186718117740,
+    "last_content_update" : 1489940466114,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

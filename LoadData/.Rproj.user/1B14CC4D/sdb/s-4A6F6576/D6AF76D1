@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1488880736951.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D6AF76D1",
+    "lastKnownWriteTime" : 1488879550,
+    "last_content_update" : 1488880736951,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "1118603",
+        "caption" : "Pipe_Actuel3",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Pipe_Actuel3&cache_key=1118603",
+        "displayedObservations" : "274",
+        "environment" : "",
+        "object" : "Pipe_Actuel3",
+        "preview" : "0",
+        "totalObservations" : "274",
+        "variables" : "33"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

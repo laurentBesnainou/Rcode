@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "dashboardPage(\n  \n  dashboardHeader(title = \"PR - Augmentée\"),\n  \n  dashboardSidebar(\n    selectInput(\"consultant_id\", \"Sélectionner un consultant:\", \n                choices = unique(questionnaire_associe[[\"ID_consultant\"]])),\n    \n    menuItem(\"Questionnaire Associés\", \n             tabName = \"associes\", icon = icon(\"users\"))\n  ),\n  \n  dashboardBody(\n    tabItems(\n      \n      tabItem(tabName = \"associes\",\n              fluidRow(\n                box(title = \"Connaissance des associés\",\n                    width = 12, status = \"primary\",\n                    plotOutput(\"connaissance_associes\", height = 300))\n              )\n              )\n      \n    )\n  )\n)",
+    "created" : 1485868793829.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2225440354",
+    "id" : "7F5AB3D7",
+    "lastKnownWriteTime" : 1485871516,
+    "last_content_update" : 1485871516862,
+    "path" : "~/Desktop/projet_PR/pr_app/ui.R",
+    "project_path" : "pr_app/ui.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\nlibrary(caret)\nlibrary(ggplot2)\n\n\n\n# load library\nlibrary(corrplot)\n# attach the iris dataset to the environment\ndata(iris)\n# rename the dataset\ndataset <- iris\n# calculate correlations\ncorrelations <- cor(iris[,1:4])\n# create correlation plot\ncorrplot(correlations, method=\"circle\")\n\n\n# create a list of 80% of the rows in the original dataset we can use for training\nvalidation_index <- createDataPartition(dataset$Species, p=0.80, list=FALSE)\n# select 20% of the data for validation\nvalidation <- dataset[-validation_index,]\n# use the remaining 80% of data to training and testing the models\ndataset <- dataset[validation_index,]\n\n# dimensions of dataset\ndim(dataset)\n\n# summarize attribute distributions\nsummary(dataset)\n\n# scatterplot matrix\n# split input and output\nx <- dataset[,1:4]\ny <- dataset[,5]\nfeaturePlot(x=x, y=y, \"strip\", jitter = TRUE)\n\n\n\nx <- matrix(rnorm(50*5),ncol=5)\ny <- factor(rep(c(\"A\", \"B\"),  25))\n\ntrellis.par.set(theme = col.whitebg(), warn = FALSE)\nfeaturePlot(x, y, \"ellipse\")\nfeaturePlot(x, y, \"strip\", jitter = TRUE)\nfeaturePlot(x, y, \"box\")\nfeaturePlot(x, y, \"pairs\")\n\n",
+    "created" : 1503917740001.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "283250126",
+    "id" : "91967001",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1503920374029,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled5"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

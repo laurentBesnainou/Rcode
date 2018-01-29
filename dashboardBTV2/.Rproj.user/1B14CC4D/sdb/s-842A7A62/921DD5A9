@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Shiny Chat example using shiny.collections\n\nlibrary(shiny)\nlibrary(purrr)\nlibrary(dplyr)\nlibrary(purrrlyr)\n\n#' This global variable describes how many recent variables are visible\n#' in the chat window.\nVISIBLE_MESSAGES <- 40\n\n# Helper Functions\n##############################\n\n#' Render divs with messages\n#'\n#' @param collection Collection of entries from rethinkDB\n#'\n#' @return div object with formetted entries\nrender_msg_divs <- function(collection) {\n  div(class = \"ui very relaxed list\",\n      collection %>%\n        arrange(time) %>%\n        tail(VISIBLE_MESSAGES) %>%\n        by_row(~ div(class = \"item\",\n                     a(class = \"header\", .$user),\n                     div(class = \"description\", .$text)\n        )) %>% {.$.out}\n  )\n}\n\n#' Get random username\n#'\n#' @return Character \"User\"+random number 10000<x99999\nget_random_username <- function() {\n  paste0(\"User\", round(runif(1, 10000, 99999)))\n}\n\n# User Interface of the Chat\n##############################\n\nui <- shinyUI(fluidPage(\n  tags$head(\n    tags$link(rel = \"stylesheet\", type = \"text/css\", href = \"style.css\"),\n    tags$script(src = \"script.js\")\n  ),\n  titlePanel(\"Chat app (shiny.collections demo)\"),\n  div(textInput(\"username_field\", \"Username\", width = \"200px\")),\n  uiOutput(\"chatbox\"),\n  div(style = \"display:inline-block\",\n      textInput(\"message_field\", \"Your message\", width = \"500px\")),\n  div(style = \"display:inline-block\",\n      actionButton(\"send\", \"Send\"))\n))\n\n# Server with app logic\n##############################\n\n#' Before running the server we set up a connection with rethinkDB\nconnection <- shiny.collections::connect()\n\nserver <- shinyServer(function(input, output, session) {\n  chat <- shiny.collections::collection(\"chat\", connection)\n  #' By default the username is a big int number.\n  updateTextInput(session, \"username_field\",\n                  value = get_random_username()\n  )\n  observeEvent(input$send, {\n    new_message <- list(user = input$username_field,\n                        text = input$message_field,\n                        time = Sys.time())\n    shiny.collections::insert(chat, new_message)\n    updateTextInput(session, \"message_field\", value = \"\")\n  })\n  \n  output$chatbox <- renderUI({\n    #' We render message boxes (divs) only if collections\n    #' contains some entries.\n    if (!is_empty(chat$collection)) {\n      render_msg_divs(chat$collection)\n    } else {\n      tags$span(\"Empty chat\")\n    }\n  })\n  \n})\n\nshinyApp(ui = ui, server = server)\nContact GitHub API Training Shop Blog About\n© 2017 GitHub, Inc. Terms Privacy Security Status \n",
+    "created" : 1499164870562.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1530590883",
+    "id" : "921DD5A9",
+    "lastKnownWriteTime" : 1499168119,
+    "last_content_update" : 1499168119846,
+    "path" : "D:/tmp/chat/app.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

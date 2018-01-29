@@ -1,0 +1,42 @@
+# library
+library(treemap)
+
+# Build Dataset
+fiche <- c("F215",	"F253",	"F47-2",	"F299",	"F239",	"F292",	"F312",	"F318",	"F297",	"F267",	"F308",	
+           "F309",	"F319",	"F270",	"F269",	"F64",	"F282",	"F300",	"F305",
+           "F306",	"F236",	"F278",	"F287",	"F291",	"F302",	"F315",
+           "F307",	"F276",	"F234",	"F261",	"F242")
+domaine <- c("ASQ",	"ASQ",	"ASQ",	"ASQ",	"ASQ",	"ASQ",	"ASQ",	"ASQ",	"ASQ",	"ASQ",	"CFT",
+             "CFT",	"CFT",	"BI",	"BI",	"C & RC",	"C & RC",	"Plateforme",	"Plateforme",
+             "Plateforme",	"Plateforme",	"Plateforme",	"Plateforme",	"Plateforme",	"Offres & Digital",
+             "Offres & Digital",	"Offres & Digital",	"Offres & Digital",	"Offres & Digital",
+             "Offres & Digital",	"Orga")
+valeur <- c(21,116,	11,	41,	177,	53,	6	,40	,12	,14,	196,	33,
+            27,	160,	200,	10,	10	,13	,10,	30,	10,	19,	20,	38,	44,
+            66,	77,	70,	62,	155	,47	)
+
+
+data <- data.frame(domaine,fiche,valeur)
+data$label <- paste(data$fiche, data$valeur, sep = ", ")
+# treemap
+
+De	Objet	Reçu	Taille	Catégories	
+Damien Berger	RE: Cagnotte pour le départ de Jonathan	16:35	241 Ko		
+  
+  png(filename="tree.png",width=800, height=800)
+treemap(data,
+        index=c("domaine","label"),
+        vSize="valeur",
+        palette =  "Set3",
+        title="Liste des Evolutions Engagées",
+        fontsize.labels=c(24,20),
+        align.labels =list(c("center", "top"), c("left", "bottom")))
+dev.off()
+# treemap
+treemap(data,
+        index=c("domaine"),
+        vSize="valeur",
+        palette =  "Set3",
+        title="Liste des Evolutions Engagées",
+        overlap.labels = 0.5,
+        align.labels = c("center", "center"), xmod.labels = 0, ymod.labels = 0)

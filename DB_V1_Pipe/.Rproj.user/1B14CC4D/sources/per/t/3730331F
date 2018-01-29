@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1509102204890.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3730331F",
+    "lastKnownWriteTime" : 4294967296,
+    "last_content_update" : 1509102204890,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "4E1B6AFB",
+        "caption" : "dfr",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=dfr&cache_key=4E1B6AFB",
+        "displayedObservations" : 6,
+        "environment" : "",
+        "object" : "dfr",
+        "preview" : 0,
+        "totalObservations" : 6,
+        "variables" : 4
+    },
+    "relative_order" : 21,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n\nCensus.Data <-read.csv(\"data/practical_data.csv\")",
+    "created" : 1495537495684.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2981238975",
+    "id" : "9E533CC2",
+    "lastKnownWriteTime" : 1495193919,
+    "last_content_update" : 1495193919,
+    "path" : "D:/tmp/leaflet/main.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

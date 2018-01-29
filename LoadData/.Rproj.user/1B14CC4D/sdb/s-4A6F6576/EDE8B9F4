@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1488879829093.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "EDE8B9F4",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1488879829093,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "FACB8884",
+        "caption" : "Staff_Actuel",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Staff_Actuel&cache_key=FACB8884",
+        "displayedObservations" : "793",
+        "environment" : "",
+        "object" : "Staff_Actuel",
+        "preview" : "0",
+        "totalObservations" : "793",
+        "variables" : "31"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(tidyverse)\nlibrary(nycflights13)\nflights\nggplot(data = mpg) + \n  geom_point(mapping = aes(x = displ, y = hwy))\n\nfliter(mpg, cyl = 8)\nfilter(diamond, carat > 3)\n\n\n\ndf <- tibble(abc = 1, xyz = \"a\")\ndf$x\n\ndf[, \"xyz\"]\ndf[, c(\"abc\", \"xyz\")]\n\n\nclean_split_pourcentage <- function(x) {\n  \n  split_result <- str_split(x, \"->\")\n  split_result <- paste(as.character(as.numeric(split_result[[1]]) *100) , \"%\")\n  if (is.na(split_result[2]) ) {\n    split_result <- split_result[1]\n    print(\"ZZ\")\n  } else {\n    print(\"ZZ\")\n    split_result <- paste(split_result[1],\"->\",split_result[2])\n  }\n  split_result\n}\n\na <- data.frame(PROP = c(\"0.6->0.7\", \"0.8->0.6\",\"0.1\"))\na %>% mutate(new_a = map_chr(PROP, \n                             clean_split_pourcentage))\n",
+    "created" : 1490970343436.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2149446870",
+    "id" : "E4185BB8",
+    "lastKnownWriteTime" : 2475636339810066802,
+    "last_content_update" : 1493811559707,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

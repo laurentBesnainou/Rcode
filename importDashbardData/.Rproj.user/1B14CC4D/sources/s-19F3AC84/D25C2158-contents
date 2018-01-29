@@ -1,0 +1,17 @@
+library("RQGIS")
+# digital elevation model (dem) to the global environment:
+data("dem", package = "RQGIS")
+
+find_algorithms("slope(.+)?aspect")
+
+
+params <- get_args_man("grass7:r.slope.aspect")
+
+
+library(raster)
+library(leaflet)
+library (ggmap)
+crime
+murder <- subset(crime,offense=="murder")
+qmplot(lon,lat,data=crime, colour=I('red'), size=I(3),darken = .3)
+qmplot(x=lon,y=lat,)

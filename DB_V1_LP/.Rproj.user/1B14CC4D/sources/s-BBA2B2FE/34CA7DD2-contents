@@ -1,0 +1,65 @@
+library(bupaR)
+data(patients)
+patients %>% summary
+
+log_otc <-data(patients)
+patients %>% summary
+
+log_otc <-pilotage_data %>%
+  eventlog(
+    case_id = "SUJET",
+    activity_id = "STEP",
+    activity_instance_id = "SECTEUR",
+        lifecycle_id = "OFFRE_PRINCIPALE",
+    timestamp = "DATE_REF",
+    resource_id = "ASSOCIE"
+  )
+
+log_otc <-pilotage_data %>% simple_eventlog(case_id = "SUJET", activity_id = "STEP", timestamp = "DATE_REF")
+
+
+
+suj <- pilotage_data %>% 
+  filter(STEP %in% c("0 - A qualifier", "1 - Qualifiée", "2 - A émettre", "3 - Emise"),
+         WEEK==max(pilotage_data$WEEK)) %>% 
+  select(SUJET)
+
+log_otc <-pilotage_data %>%
+  filter(SUJET %in% suj$SUJET) %>% simple_eventlog(case_id = "SUJET", activity_id = "STEP", timestamp = "DATE_REF")
+
+log_otc <- pilotage_data %>% mutate(Activity = ifelse(STEP=="4 - Gagnée",2,1)) %>% #a data.frame with the information in the table above
+  eventlog(
+    case_id = "SUJET",
+    activity_id = "STEP",
+    activity_instance_id = "Activity",
+    lifecycle_id = "STEP",
+    timestamp = "DATE_REF",
+    resource_id = "ASSOCIE"
+  )
+
+log_otc %>% activity_presence %>% plot
+
+
+log_otc %>%filter_endpoints(end_activities = c("4 - Gagnée","5 - No follow","6 - En sommeil","7 - Perdue"))%>%
+  dotted_chart
+
+
+log_otc %>%
+  filter_trace_frequency(perc = 0.9) %>%
+  process_map()
+
+log_otc %>%filter_endpoints(end_activities = c("4 - Gagnée","5 - No follow","6 - En sommeil","7 - Perdue"))%>%
+  resource_matrix() %>%
+  plot()
+
+log_otc %>%  filter_endpoints(end_activities = c("4 - Gagnée","5 - No follow","6 - En sommeil","7 - Perdue"))%>%
+  trace_explorer(coverage = 0.9) 
+ 
+
+log_otc %>% 
+  trace_explorer(coverage = 0.9)
+log_otc %>%  filter_endpoints(end_activities = c("4 - Gagnée","5 - No follow","6 - En sommeil","7 - Perdue"))%>%
+  activity_presence %>% plot
+performance_dashboard(d)
+resource_dashboard(d)
+rework_dashboard(d)

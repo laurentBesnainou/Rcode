@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Add Shiny Events\n#'\n#' @param sunburst \\code{sunburst} htmlwidget to which you would\n#'         like to add event handling\n#'\n#' @return \\code{sunburst} htmlwidget\n#' @export\n#' @example ./inst/examples/example_shiny.R\nadd_shiny <- function(sunburst = NULL){\n  stopifnot(!is.null(sunburst),inherits(sunburst,\"sunburst\"))\n  \n  if(is.null(sunburst$x$tasks)) sunburst$x$tasks <- list()\n  sunburst$x$tasks[length(sunburst$x$tasks)+1] <- list(htmlwidgets::JS(\n    '\n    function(){\n    var chart = this.instance.chart;\n    var el = this.el;\n    if(!(typeof(Shiny)===\"undefined\")){\n    chart.on(\"mouseover.shiny\", function(d){\n    Shiny.onInputChange(el.id + \"_mouseover\",d)\n    });\n    chart.on(\"mouseleave.shiny\", function(d){\n    Shiny.onInputChange(el.id + \"_mouseleave\",d)\n    });\n    chart.on(\"click.shiny\", function(d){\n    Shiny.onInputChange(el.id + \"_click\",d)\n    });\n    }\n    }\n    '\n  ))\n  return(sunburst)\n  }\n",
+    "created" : 1486566860601.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1703739260",
+    "id" : "6DDDDA5B",
+    "lastKnownWriteTime" : 1486566895,
+    "last_content_update" : 1486566895917,
+    "path" : "D:/tmp/sunburst/Shiny.R",
+    "project_path" : "Shiny.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

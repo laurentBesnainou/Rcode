@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1487689463093.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B2012614",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1487689463093,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "2ACC5BAE",
+        "caption" : "iris.training",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=iris.training&cache_key=2ACC5BAE",
+        "displayedObservations" : "102",
+        "environment" : "",
+        "object" : "iris.training",
+        "preview" : "0",
+        "totalObservations" : "102",
+        "variables" : "4"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

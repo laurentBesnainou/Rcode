@@ -1,0 +1,12 @@
+name: CB-Demo
+title: CB-Demo
+username:
+account: comptehome
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 219930
+bundleId: 1001883
+url: https://comptehome.shinyapps.io/CB-Demo/
+when: 1506611070.53073
+asMultiple: FALSE
+asStatic: FALSE

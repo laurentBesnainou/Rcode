@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1504457480044.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "8729AAEC",
+    "lastKnownWriteTime" : 1508096007,
+    "last_content_update" : 1508096007471,
+    "path" : "D:/tmp/importDashbardData/import_pipe_all.R",
+    "project_path" : "import_pipe_all.R",
+    "properties" : {
+        "cursorPosition" : "17,63",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

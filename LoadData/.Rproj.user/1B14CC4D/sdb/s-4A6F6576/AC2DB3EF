@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# load package\nlibrary(googlesheets)\n\n# # Procedure qui permet de stocker son Token pour s'authentifier sur Drive\n# gs_ls()\n# #On récupère le token\n# token <- gs_auth(cache = FALSE)\n# gd_token()\n# #On le sauve au niveau du drive\n# saveRDS(token, file = \"googlesheets_token.rds\")\n\n#gs_auth(token = \"googlesheets_token.rds\")\n## and you're back in business, using the same old token\n## on utilise le token (de façon transparente) \nsuppressMessages(gs_auth(token = \"googlesheets_token.rds\", verbose = FALSE))\n\n#Permet de connaitre le User authentifié\ngs_user()\n\n# On récupère le lien vers le fichier Pilotage dans R\nBT_Pilotage <- gs_title(\"BT - Pilotage 2017\")\n\n# liste des worksheets de ce fichier\n#gs_ws_ls(BT_Pilotage)\n\n# On charge la feuille google dans un dataframe (skip permet de passer les 15 premieres lignes)\nStaff_Actuel <- gs_read(ss=BT_Pilotage, ws = \"Staffing\", skip=15)\n\n#On va supprimer toutes les lignes de fin du fichier de staffing qui ne sont as utiles (ex et lignes vide en colonne 1)\nStaff_Actuel2 <- subset(Staff_Actuel, !is.na(Staff_Actuel$Consultants))\nStaff_Actuel3 <- subset(Staff_Actuel2, Staff_Actuel2$Consultants!=\"(ex)\")\n\n#On modifie le nom des colonne\nformat_col_names <- function(x) { \n  x <- str_replace_all(x, \"[éèê]\", \"e\")\n  x <- str_replace_all(x, \" \", \"_\")\n  x <- str_replace_all(x, \"\\\\.\", \"\")\n  x <- str_replace_all(x, \"/\", \"\")\n  x <- str_replace_all(x, \"€\", \"E\")\n  x <- str_replace_all(x, \"\\\\(\", \"_\")\n  x <- str_replace_all(x, \"\\\\)\", \"\")\n  x <- str_replace_all(x, \"\\n\", \"\")\n  x <- str_replace_all(x, \"\\r\", \"\")\n  x <- str_replace_all(x, \"\\\\+1\", \"_PLUS_1_\")\n  x <- str_replace_all(x, \"\\\\-1\", \"_MOINS_1_\")\n  x <- str_to_upper(x)\n  x\n}\n\ncolnames(Staff_Actuel3) <- format_col_names(colnames(Staff_Actuel3))\nStaffing <- Staff_Actuel3\nsave(Staffing,file=\"staffing2017.RData\")\n\n#O va a resent lire la feuille Pipe\nPipe_Actuel <- gs_read(ss=BT_Pilotage, ws = \"Pipe\", skip=3)\nPipe_Actuel$Anomalies <- NULL\n\n# On va supprimer toutes les lignes de fin du fichier de pipe qui ne sont as utiles (NA + \"ZZ_NE RIEN AJOUTER SOUS CETTE LIGNE\")\nPipe_Actuel2 <- subset(Pipe_Actuel, !is.na(Pipe_Actuel$Compte))\nPipe_Actuel3 <- subset(Pipe_Actuel2, Pipe_Actuel2$Compte!=\"ZZ_NE RIEN AJOUTER SOUS CETTE LIGNE\")\nPipe_Actuel3 <- subset(Pipe_Actuel3, Pipe_Actuel3$Compte!=\"Sell On\")\n\n\n# On ajoute le numéro de semaine au Dataframe\nnb <- week(today())\ndate_ref <- data_frame(\n  date_ref = seq(from = dmy(\"01/01/2017\"), to = dmy(\"31/12/2017\"), by = \"weeks\"),\n  week = week(date_ref)\n)\nPipe_Actuel3 <- Pipe_Actuel3 %>%  mutate(week=nb) %>% mutate(date_ref = today())\ncolnames(Pipe_Actuel3) <- format_col_names(colnames(Pipe_Actuel3))\n#on transforme les % en numeric\nPipe_Actuel3 <- Pipe_Actuel3 %>% mutate (PROB = as.numeric(sub(\"%\",\"\",PROB))/100 )\n\nas.POSIXct( paste(Pipe_Actuel3$DATE_DE_DEBUT_PREVUE_MISSION,\"/2017\", sep=\"\"))\n\n\n#on supprime les info si la semaine est deja présente\npilotage_data2 <- subset(pilotage_data, pilotage_data$WEEK != nb)\n#on ajoute le pipe récupéré de la google sheet\npilotage_data3 <- bind_rows(pilotage_data2,Pipe_Actuel3)\n",
+    "created" : 1488877720531.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1340440159",
+    "id" : "AC2DB3EF",
+    "lastKnownWriteTime" : 1488891159,
+    "last_content_update" : 1488891159179,
+    "path" : "D:/tmp/LoadData/GoogleSheetPilotage.R",
+    "project_path" : "GoogleSheetPilotage.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

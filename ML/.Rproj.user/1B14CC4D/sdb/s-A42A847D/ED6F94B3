@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1487689467093.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "ED6F94B3",
+    "lastKnownWriteTime" : 13229753402130434,
+    "last_content_update" : 1487689467093,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7150E02F",
+        "caption" : "irisNomalized",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=irisNomalized&cache_key=7150E02F",
+        "displayedObservations" : "150",
+        "environment" : "",
+        "object" : "irisNomalized",
+        "preview" : "0",
+        "totalObservations" : "150",
+        "variables" : "5"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

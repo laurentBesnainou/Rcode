@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1505404903775.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B1798D90",
+    "lastKnownWriteTime" : 2475636339810066802,
+    "last_content_update" : 1505404903775,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "CDCB01EA",
+        "caption" : "nodesMissions",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=nodesMissions&cache_key=CDCB01EA",
+        "displayedObservations" : "20",
+        "environment" : "",
+        "object" : "nodesMissions",
+        "preview" : "0",
+        "totalObservations" : "20",
+        "variables" : "6"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

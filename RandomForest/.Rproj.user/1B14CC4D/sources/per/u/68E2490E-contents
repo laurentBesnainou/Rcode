@@ -1,0 +1,3 @@
+library(randomForest)
+# Load the dataset and explore
+data1 <- read.csv(file.choose(), header = TRUE)

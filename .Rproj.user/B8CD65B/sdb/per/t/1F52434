@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(shinydashboard)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\n\nload(\"data/questionnaire_associe.RData\")\n\nq1_str <- \"Pour quelle personne ci-dessous considères-tu que ton avis n'est pas pertinent ?\"\n\nquestionnaire_associe <- questionnaire_associe %>% \n  mutate(response = ifelse(Question == q1_str,\n                           ifelse(is.na(response), \"Je connais\", \"Je ne connais pas\"), \n                           response))",
+    "created" : 1485868792059.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "59570255",
+    "id" : "1F52434",
+    "lastKnownWriteTime" : 1485872449,
+    "last_content_update" : 1485872449724,
+    "path" : "~/Desktop/projet_PR/pr_app/global.R",
+    "project_path" : "pr_app/global.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1505728201785.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "50F66D1A",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1505728201785,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7281968C",
+        "caption" : "nodesComptes",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=nodesComptes&cache_key=7281968C",
+        "displayedObservations" : "15",
+        "environment" : "",
+        "object" : "nodesComptes",
+        "preview" : "0",
+        "totalObservations" : "15",
+        "variables" : "6"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

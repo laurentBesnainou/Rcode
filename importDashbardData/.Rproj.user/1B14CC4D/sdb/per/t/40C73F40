@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1501084522823.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "40C73F40",
+    "lastKnownWriteTime" : 5292976843906638626,
+    "last_content_update" : 1501084522823,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C9FD242A",
+        "caption" : "Staffing",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Staffing&cache_key=C9FD242A",
+        "displayedObservations" : "953",
+        "environment" : "",
+        "object" : "Staffing",
+        "preview" : "0",
+        "totalObservations" : "953",
+        "variables" : "23"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

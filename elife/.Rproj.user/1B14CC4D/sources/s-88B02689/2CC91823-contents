@@ -1,0 +1,10 @@
+library(googleVis)
+
+Bubble <- gvisBubbleChart(data, idvar="SUJET", 
+                          xvar="COMPTE", yvar="CA_BT__N__KE",
+                          colorvar="STEP", sizevar="CA_BT__N__KE",
+                          options=list(
+                            hAxis='{minValue:75, maxValue:125}'))
+
+
+plot(Bubble)

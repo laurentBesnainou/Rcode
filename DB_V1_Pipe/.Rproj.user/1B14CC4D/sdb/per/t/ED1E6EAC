@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# Fichier Global\n#libraires utilisées\nlibrary(shiny)\nlibrary(shinythemes)\nlibrary(shinydashboard)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(RColorBrewer) #coulors pour ggplot\nlibrary(D3partitionR )\n\n\n#données 2017\nload(\"data/pilotage_data.RData\")\n\n#on ne garde que le pipe\n#0 - A qualifier, 1 - Qualifiée, 2 - A émettre, 3 - Emise\npipe <- pilotage_data %>% filter (STEP %in% c(\"0 - A qualifier\", \"1 - Qualifiée\", \"2 - A émettre\", \"3 - Emise\"))\n\n\n# \n\n              ",
+    "created" : 1503920494449.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2103902056",
+    "id" : "ED1E6EAC",
+    "lastKnownWriteTime" : 1504093986,
+    "last_content_update" : 1504093986874,
+    "path" : "D:/tmp/DB_V1_Pipe/global.R",
+    "project_path" : "global.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

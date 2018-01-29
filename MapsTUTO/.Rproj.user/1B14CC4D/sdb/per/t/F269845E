@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# Load packages\nlibrary(\"rgdal\")\nlibrary(\"rgeos\")\n\nsetwd(\"D:/tmp/MapsTUTO/data/\")\n# Load the output area shapefiles\nOutput.Areas<- readOGR(\".\", \"Camden_oa11\")\n\n\nCensus.Data <-read.csv(\"practicaldata.csv\")\n\n# plots the shapefile\nplot(Output.Areas)\n\n\n# joins data to the shapefile\nOA.Census <- merge(Output.Areas, Census.Data, by.x=\"OA11CD\", by.y=\"OA\")\n\n\n# loads packages\nlibrary(tmap)\nlibrary(leaflet)\nlibrary(RColorBrewer)\n\n# this will prodyce a quick map of our qualification variable\nqtm(OA.Census, fill = \"Qualification\")\n\n# Creates a simple choropleth map of our qualification variable\ntm_shape(OA.Census) + tm_fill(\"Qualification\") \n\n\n# setting a colour palette\ntm_shape(OA.Census) + tm_fill(\"Qualification\", palette = \"-Greens\")  + \n  tm_borders(alpha=.4) +\n  tm_compass() + \n  tm_layout(title = \"Camden, London\", legend.text.size = 1.1, legend.title.size = 1.4, legend.position = c(\"right\", \"top\"), frame = FALSE) \n\n\n\nwriteOGR(OA.Census, dsn = \"D:/tmp/MapsTUTO\", layer =  \"Census_OA_Shapefile\", driver=\"ESRI Shapefile\")\n",
+    "created" : 1495537229698.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3917642081",
+    "id" : "F269845E",
+    "lastKnownWriteTime" : 1495539715,
+    "last_content_update" : 1495539715222,
+    "path" : "D:/tmp/MapsTUTO/tuto.R",
+    "project_path" : "tuto.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(\"RQGIS\")\n# digital elevation model (dem) to the global environment:\ndata(\"dem\", package = \"RQGIS\")\n\nfind_algorithms(\"slope(.+)?aspect\")\n\n\nparams <- get_args_man(\"grass7:r.slope.aspect\")\n\n\nlibrary(raster)\nlibrary(leaflet)\nlibrary (ggmap)\ncrime\nmurder <- subset(crime,offense==\"murder\")\nqmplot(lon,lat,data=crime, colour=I('red'), size=I(3),darken = .3)\nqmplot(x=lon,y=lat,)\n",
+    "created" : 1497955323543.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2900537851",
+    "id" : "D25C2158",
+    "lastKnownWriteTime" : 200368640,
+    "last_content_update" : 1497968011432,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

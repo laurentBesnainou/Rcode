@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(leaflet)\nm <- leaflet() %>%\n  addTiles() %>%  # Add default OpenStreetMap map tiles\n\n  addMarkers(x=881947.6, y=6544401.6, popup=\"The birthplace of R\")\nm  # Print the map\n\n\naccessible_ID <- c(12, 13, 15, 17, 18,\n                   21, 23, 25, 26, 28,\n                   30, 32, 33, 34, 38,\n                   39, 40, 41, 45, 47,\n                   48, 49, 50, 51, 52,\n                   56, 57, 58, 59, 62, \n                   63, 64, 66, 67, 68, \n                   69, 70, 71)\n\n\nnames(accessible_ID) <- c(\"Thomas Roche\", \"Alexandre Mur\", \"Emile Saloum\", \"Abdelilah Chouai\", \"Manfred Le Callonnec\",\n                          \"Aurore Collumeau\", \"Bénédicte Lissoir\", \"Benedicte Lissoir2\", \"Edouard Tardu\", \"Niamkey Ackable\",\n                          \"Niamkey Ackable2\", \"Sandy Malosse\", \"Maud Duforest\", \"Benjamin Faibis\", \"Tiphaine Lorant\",\n                          \"Victoire de la Boulaye\", \"Charles Velten-Jameson\", \"Julie Maillard\", \"Laurent Besnainou\",\"claire marchive\", \n                          \"Antoine Petit\", \"Charles-Guillaume Vanheeckhoet\", \"Erwan Thion\", \n                          \"Sybille Urvoy\", \"Margaux Lanfranchi\", \"Clément Coicault\", \"Junel Popp\", \"Pierrick Gall\", \n                          \"Renée-Laurie Sturtzer\", \"Francois Dias\", \"Quentin Hureau\", \"Juliette Beylle\", \"Damien Berger\", \n                          \"Nicolas Suchaud\", \"Tiphaine Gascon\", \"Romain Brunat\", \"Eymeline Pernet\", \"Clement Coicault\")\n\nQui <- questionnaire_consultant %>% filter(ID_cible == 45, response ==\"Je connais\")\nid <- unique(Qui$ID_consultant)\nlien <- data.frame(ID_consultant=accessible_ID,\n                   qui=c(\"Thomas Roche\", \"Alexandre Mur\", \"Emile Saloum\", \"Abdelilah Chouai\", \"Manfred Le Callonnec\",\n                         \"Aurore Collumeau\", \"Bénédicte Lissoir\", \"Benedicte Lissoir2\", \"Edouard Tardu\", \"Niamkey Ackable\",\n                         \"Niamkey Ackable2\", \"Sandy Malosse\", \"Maud Duforest\", \"Benjamin Faibis\", \"Tiphaine Lorant\",\n                         \"Victoire de la Boulaye\", \"Charles Velten-Jameson\", \"Julie Maillard\", \"Laurent Besnainou\",\"claire marchive\", \n                         \"Antoine Petit\", \"Charles-Guillaume Vanheeckhoet\", \"Erwan Thion\", \n                         \"Sybille Urvoy\", \"Margaux Lanfranchi\", \"Clément Coicault\", \"Junel Popp\", \"Pierrick Gall\", \n                         \"Renée-Laurie Sturtzer\", \"Francois Dias\", \"Quentin Hureau\", \"Juliette Beylle\", \"Damien Berger\", \n                         \"Nicolas Suchaud\", \"Tiphaine Gascon\", \"Romain Brunat\", \"Eymeline Pernet\", \"Clement Coicault\")\n                     )\n\npersonne <- questionnaire_consultant %>% filter(ID_consultant %in% accessible_ID, Consultant == \"Laurent Besnainou\")\n\nResutat <- left_join(personne, lien) %>% select(ID_consultant,qui,Question, response) \nwrite.csv(Resutat, file = \"MyData.csv\")\nlibrary(xlsx)\n\nwrite.xlsx(Resutat, file=\"myworkbook.xlsx\", \n           sheetName=\"USA Arrests\")\nwrite.xlsx(Resutat, \"D:/mydata.xlsx\")",
+    "created" : 1486476135046.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3960875634",
+    "id" : "4391AD08",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1486505141479,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1509085345822.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A2133CA9",
+    "lastKnownWriteTime" : 1509021423,
+    "last_content_update" : 1509021423,
+    "path" : "D:/tmp/DB_V1_PROD/tkModel.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "51,90",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

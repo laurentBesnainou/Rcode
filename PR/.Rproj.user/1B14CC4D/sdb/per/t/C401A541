@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "shinyUI(fluidPage(\n  \n  theme = shinythemes::shinytheme(\"cosmo\"),\n  titlePanel(\"PR - Augmentée Consultants\"),\n  \n  sidebarLayout(\n    sidebarPanel(selectInput(\"consultant_id\", \"Sélectionner un individu:\", \n                             choices = questionnaire_qualites %>% distinct(Consultant)), \n                 tableOutput(\"Connaissance\"),\n                 width = 3),\n    \n    mainPanel(\n      plotOutput(\"mon_ranking\", height= 300),\n      tags$br(),\n      tags$br(),\n      plotOutput(\"mon_radar_asso\", height = 500),  tableOutput(\"view\"),\n      width = 9\n    )\n    \n  )\n)\n)",
+    "created" : 1486500933581.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2680785624",
+    "id" : "C401A541",
+    "lastKnownWriteTime" : 1486500963,
+    "last_content_update" : 1486500963849,
+    "path" : "D:/tmp/PR/pr_augmented_C/ui.R",
+    "project_path" : "pr_augmented_C/ui.R",
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(shinythemes)\nlibrary(shinydashboard)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(RColorBrewer) #coulors pour ggplot\nlibrary(stringr)\nlibrary(lubridate) # gestion des dates\nlibrary(xts) #serie temporelle\nlibrary(purrr) # \nlibrary(tidyr)\nlibrary(scales) \nlibrary(googleVis) # Permet d'utiliser les graphiques >  Google Chart \nlibrary(highcharter) # courbe de comparaison des CA de 2015 à 2017\nlibrary(treemap)\nlibrary(viridis)\nlibrary(sunburstR)\nlibrary(data.table)\n\n#chargement des données\nload(\"data/pilotage2016_data.RData\")\nload(\"data/pilotage2015_data.RData\")\nload(\"data/staffing2017.RData\")\n\n#données 2017\nload(\"data/pilotage_data.RData\")",
+    "created" : 1501243878794.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2272508272",
+    "id" : "43A7B8C8",
+    "lastKnownWriteTime" : 1501260423,
+    "last_content_update" : 1501260423976,
+    "path" : "D:/tmp/Pipe/global.R",
+    "project_path" : "global.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

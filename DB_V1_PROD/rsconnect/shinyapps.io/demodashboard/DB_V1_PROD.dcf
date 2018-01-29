@@ -1,0 +1,13 @@
+name: DB_V1_PROD
+title: DB_V1_PROD
+username:
+account: demodashboard
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 221925
+bundleId: 1067139
+url: https://demodashboard.shinyapps.io/DB_V1_PROD/
+when: 1510242296.67032
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: tkModel.R

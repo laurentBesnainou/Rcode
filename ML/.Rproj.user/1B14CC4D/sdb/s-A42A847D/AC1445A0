@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# Charger\nlibrary(\"tm\")\nlibrary(\"SnowballC\")\nlibrary(\"wordcloud\")\nlibrary(\"RColorBrewer\")\nlibrary(\"rvest\")\n\nreadLines('https://www.anil.org/copropriete-financement-travaux/')\n\nscraping_wiki <- read_html(\"https://www.anil.org/copropriete-financement-travaux\")\ntexte <- scraping_wiki %>% \n  html_nodes(\".col-sm-9\") %>% html_text()\n\nxpath <- '//h3 | //li | //*[contains(concat( \" \", @class, \" \" ), concat( \" \", \"bodytext\", \" \" ))] | //*[(@id = \"top-link\")]'\n\n\nscraping_wiki %>% html_nodes(xpath = xpath)",
+    "created" : 1487759958045.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3602359505",
+    "id" : "AC1445A0",
+    "lastKnownWriteTime" : 199379632,
+    "last_content_update" : 1487761668428,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

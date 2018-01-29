@@ -1,0 +1,9 @@
+{
+    "path" : "D:/tmp/upload",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

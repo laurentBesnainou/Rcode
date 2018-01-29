@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1505217083642.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2871558173",
+    "id" : "E769B1A5",
+    "lastKnownWriteTime" : 1508845087,
+    "last_content_update" : 1508845087775,
+    "path" : "D:/tmp/DB_V1_Pipe/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "cursorPosition" : "74,4",
+        "scrollLine" : "66",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,591 @@
+
+# This is the server logic for a Shiny web application.
+# You can find out more about building applications with Shiny here:
+#
+# http://shiny.rstudio.com
+#
+
+server <- function(input, output) {
+  
+  #on met en place une reactiveValues pour permettre la réactivation de DT losrque l'on charge un fichier XLS ou que l'on deande une nouvelle
+  #verion du fichier Google de suivi
+  values <- reactiveValues()
+  #On initialise les différences entre le staffing et google 
+  Staff_Actuel <- prepareStaffing1(Staff_Actuel)
+  Staff_Actuel2 <- prepareStaffing2(Staff_Actuel)
+   Staffing <- Staffing %>% 
+    filter(TYPE != 0)  %>%
+    select(CONSULTANTS,TYPE,MISSIONS,ID_TOTEM,TOTAL)
+
+  resultatDiff <- diff_data(Staffing,Staff_Actuel2)
+
+  comparaison <- as.data.frame(resultatDiff$get_matrix())
+  comparaison <- compareStaff(comparaison)
+  
+  
+  
+  #d <-  comparaison  %>% filter (V1=="mod")  
+  
+  ######################## Initialisation pipe
+  #il faut regarder les lignes différentes 
+  Pilotage <- Pilotage %>% select(COMPTE,ASSOCIE, SUJET,STEP,PROB,CODE_TOTEM,TOTAL_CA_VENDU_N__KE)
+  Pilotage_Actuel <- preparePipe1(Pilotage_Actuel)
+  resultatDiff <- diff_data(Pilotage ,Pilotage_Actuel)
+  comparaisonP <- as.data.frame(resultatDiff$get_matrix())
+  
+  #on conserve les lignes en écarts
+  comparaisonP <- comparaisonP %>% filter(! V4 %in%  c("ZZ_NE RIEN AJOUTER SOUS CETTE LIGNE",NA)) %>%
+    mutate(V1= as.character(V1))%>% 
+    filter(V1 %in% c("+++","---","->")) %>%
+    mutate(V1= ifelse(V1=="->","mod",V1)) %>% 
+    filter (V1 == "+++"|V1 == "---"|(V1=="mod" & grepl("->",paste(V5,V6,V8) ))) %>%
+    mutate(V5= ifelse(grepl("->",V5),as.character(V5),paste(V5,"->",V5))) %>%
+    mutate(V9= ifelse(grepl("->",V8),as.character(V8),paste(V8,"->0"))) %>%
+    separate(V9, into = c("SPrev","S"), sep = "->",convert=TRUE) %>% 
+    separate(V5, into = c("STEPPrev","STEP"), sep = "->",convert=TRUE) %>%
+    mutate(STEP=trimws(STEP))
+  comparaisonP$S <- as.numeric(remplaceVal(comparaisonP$S ))
+  comparaisonP$SPrev <- as.numeric(remplaceVal(comparaisonP$SPrev ))
+  
+  comparaisonP <- comparaisonP %>%
+    mutate(S=ifelse(V1=="+++",as.numeric(SPrev),as.numeric(S))) %>%
+    mutate(S=ifelse(V1=="mod",
+                    ifelse(grepl("->",V8),S,as.numeric(SPrev)),as.numeric(S))) %>%
+    mutate(SPrev= ifelse(V1=="+++",0,as.numeric(SPrev)))%>%
+    mutate(DELTA=ifelse(V1=="+++",S,
+                        ifelse(V1=="---",-SPrev,S - SPrev))) %>% filter(abs(DELTA)>0.5)
+  
+  SyntheseP <- comparaisonP %>% group_by(V1) %>% summarise(n())
+  
+  comparaisonP <- comparaisonP %>%
+    mutate(V4= as.character(V4) ) %>%
+    mutate(V4= ifelse(grepl("->",V4),V4,paste(V4,"->",V4))) %>%
+    separate(V4, into = c("V4_1","V4_2"), sep = "->",convert=TRUE)
+  
+  comparaisonP$V4 <- NULL
+  comparaisonP$V4_1 <- NULL
+  comparaisonP <- comparaisonP %>% rename(V4= V4_2 )
+  
+  comparaisonP <- comparaisonP %>%
+    mutate(V7= as.character(V7) ) %>%
+    mutate(V7= ifelse(grepl("->",V7),V7,paste(V7,"->",V7))) %>%
+    separate(V7, into = c("V7_1","V7_2"), sep = "->",convert=TRUE)
+  
+  comparaisonP$V7 <- NULL
+  comparaisonP$V7_1 <- NULL
+  comparaisonP <- comparaisonP %>% rename(V7= V7_2 ) %>%
+    
+    mutate(V6= ifelse(grepl("->",V6),as.character(V6),paste(V6,"->",V6))) %>%
+    separate(V6, into = c("V6_1","V6_2"), sep = "->",convert=TRUE)
+  
+  #Ecarts sur le staffing
+  Synthese_TOTALP <- comparaisonP  %>% group_by(V1)  %>% summarise(TOTAL = sum(DELTA,na.rm = FALSE))
+  dP <-  comparaisonP  %>% filter (V1=="mod", grepl("->",V8))
+  
+  
+  values$LogGoogle <- LogGoogle
+  values$LogFichier <- LogFichier
+  ##################################################
+
+  #Vaues Box sur le Staffing & le Pipe
+  output$Add <- renderValueBox({
+    Synthese <- comparaison %>% group_by(V1) %>% summarise(n())
+    valueBox(
+      ifelse(nrow(Synthese[Synthese$V1=="+++",2])==0,0,Synthese[Synthese$V1=="+++",2]),
+      "Ligne ajoutée", icon = icon("plus", lib = "glyphicon"),
+      color = "green"
+    )
+  })
+  output$AddP <- renderValueBox({
+    valueBox(
+      ifelse(nrow(SyntheseP[SyntheseP$V1=="+++",2])==0,0,SyntheseP[SyntheseP$V1=="+++",2]),
+      "Ligne ajoutée", icon = icon("plus", lib = "glyphicon"),
+      color = "green"
+    )
+  })
+    output$Mod <- renderValueBox({
+      Synthese <- comparaison %>% group_by(V1) %>% summarise(n())  
+    valueBox(
+      ifelse(nrow(Synthese[Synthese$V1=="mod",2])==0,0,Synthese[Synthese$V1=="mod",2]),
+      "Ligne modifiées", icon = icon("pencil", lib = "glyphicon"),
+      color = "yellow"
+    )
+  })
+    output$ModP <- renderValueBox({
+      valueBox(
+        ifelse(nrow(SyntheseP[SyntheseP$V1=="mod",2])==0,0,SyntheseP[SyntheseP$V1=="mod",2]),
+        "Ligne modifiées", icon = icon("pencil", lib = "glyphicon"),
+        color = "yellow"
+      )
+    })
+  output$Del <- renderValueBox({
+    Synthese <- comparaison %>% group_by(V1) %>% summarise(n())
+    valueBox(
+      ifelse(nrow(Synthese[Synthese$V1=="---",2])==0,0,Synthese[Synthese$V1=="---",2]), 
+      "Ligne supprimées", icon = icon("minus", lib = "glyphicon"),
+      color = "red"
+    )
+  })
+  output$DelP <- renderValueBox({
+    valueBox(
+      ifelse(nrow(SyntheseP[SyntheseP$V1=="---",2])==0,0,SyntheseP[SyntheseP$V1=="---",2]), 
+      "Ligne supprimées", icon = icon("minus", lib = "glyphicon"),
+      color = "red"
+    )
+  })
+  
+  output$Add_TOTAL <- renderValueBox({
+    Synthese_TOTAL <- comparaison  %>% group_by(V1)  %>% summarise(TOTAL = sum(DELTA,na.rm = TRUE))
+    valueBox(
+      ifelse(nrow(Synthese_TOTAL[Synthese_TOTAL$V1=="+++",2])==0,0,Synthese_TOTAL[Synthese_TOTAL$V1=="+++",2]),
+      "Jours homme ajoutés", icon = icon("plus", lib = "glyphicon"),
+      color = "green"
+    )
+  })
+  output$Add_TOTALP <- renderValueBox({
+    valueBox(
+      ifelse(nrow(Synthese_TOTALP[Synthese_TOTALP$V1=="+++",2])==0,0,Synthese_TOTALP[Synthese_TOTALP$V1=="+++",2]),
+      "Jours homme ajoutés", icon = icon("plus", lib = "glyphicon"),
+      color = "green"
+    )
+  })
+  output$Mod_TOTAL <- renderValueBox({
+    Synthese_TOTAL <- comparaison  %>% group_by(V1)  %>% summarise(TOTAL = sum(DELTA,na.rm = TRUE))
+    valueBox(ifelse(nrow(Synthese_TOTAL[Synthese_TOTAL$V1=="mod",2])==0,0,Synthese_TOTAL[Synthese_TOTAL$V1=="mod",2]),
+      "Impacts en jours homme", icon = icon("pencil", lib = "glyphicon"),
+      color = "yellow"
+    )
+  })
+  output$Mod_TOTALP <- renderValueBox({
+    valueBox(sum(dP$DELTA),
+             "Impacts en jours homme", icon = icon("pencil", lib = "glyphicon"),
+             color = "yellow"
+    )
+  })
+  output$Del_TOTAL <- renderValueBox({
+    Synthese_TOTAL <- comparaison  %>% group_by(V1)  %>% summarise(TOTAL = sum(DELTA,na.rm = TRUE))
+    valueBox(
+      ifelse(nrow(Synthese_TOTAL[Synthese_TOTAL$V1=="---",2])==0,0,Synthese_TOTAL[Synthese_TOTAL$V1=="---",2]), 
+      "Jour/hommme supprimés", icon = icon("minus", lib = "glyphicon"),
+      color = "red"
+    )
+  })
+  output$Del_TOTALP <- renderValueBox({
+    valueBox(
+      ifelse(nrow(Synthese_TOTALP[Synthese_TOTALP$V1=="---",2])==0,0,Synthese_TOTALP[Synthese_TOTALP$V1=="---",2]), 
+      "Jour/hommme supprimés", icon = icon("minus", lib = "glyphicon"),
+      color = "red"
+    )
+  })
+  # Graphes sur les écarts entre la version de référence et le fichier Google
+  output$Staffing_plot <- renderPlot({
+    plotOld <- Staffing %>% filter(TYPE !=0) %>%
+      group_by(TYPE) %>%
+      summarise(TOTAL = sum(TOTAL, na.rm = TRUE)) %>%
+      mutate(Semaine = "Précédente") 
+    
+    plotNew <- Staff_Actuel %>% filter(TYPE !=0) %>%
+      group_by(TYPE) %>%
+      summarise(TOTAL = sum(TOTAL, na.rm = TRUE)) %>%
+      mutate(Semaine = "Actuelle") 
+    
+    plot_final <- left_join(plotOld, plotNew, by = c("TYPE")) %>% 
+      mutate(Ecarts = TOTAL.y - TOTAL.x )  %>% 
+      mutate(TYPE = ifelse(TYPE==1,"1 FERME",
+                           ifelse(TYPE==2,"2 PREVI",
+                                  ifelse(TYPE==3,"3 CONGES",
+                                         ifelse(TYPE==4,"4 Formation",
+                                                ifelse(TYPE==5,"5Activités Internes",
+                                                       ifelse(TYPE==6,"6 Arrêt maladie",
+                                                              "7 Inactivité")))))))
+      
+    plot_final %>%
+    ggplot(aes(x = TYPE,
+               y = Ecarts, fill=TYPE))+
+      geom_bar(stat = "identity")+
+      ggtitle("Ecarts par type de ligne du staffing")+
+      scale_x_discrete(name="TYPE")+
+      theme_wsj() + scale_fill_discrete(name = "Type de ligne") + theme(legend.position="bottom")
+  })
+  
+  output$Pipe_plot <- renderPlot({
+    plotOld <- Pilotage %>% 
+      group_by(STEP) %>%
+      summarise(TOTAL = sum(TOTAL_CA_VENDU_N__KE, na.rm = TRUE)) %>%
+      mutate(Semaine = "Précédente") 
+    
+    plotNew <- Pilotage_Actuel %>% mutate(TOTAL_CA_VENDU_N__KE = as.numeric(TOTAL_CA_VENDU_N__KE)) %>%
+      group_by(STEP) %>%
+      summarise(TOTAL = sum(TOTAL_CA_VENDU_N__KE, na.rm = TRUE)) %>%
+      mutate(Semaine = "Actuelle") 
+    
+    plot_final <- left_join(plotOld, plotNew, by = c("STEP")) %>% 
+      mutate(Ecarts = TOTAL.y - TOTAL.x )  
+    
+    plot_final %>%
+      ggplot(aes(x = STEP,
+                 y = Ecarts, fill=STEP))+
+      geom_bar(stat = "identity")+
+      ggtitle("Ecarts par type de ligne du Pipe")+
+      scale_x_discrete(name="STEP")+
+      theme_wsj() + scale_fill_discrete(name = "Type de ligne") + theme(legend.position="bottom")
+    
+  }) 
+  
+   output$contents <- renderTable({
+     values$Staffing
+   })
+  
+  output$contents2 <- renderTable({
+    values$Pilotage
+  })
+  
+  
+  StaffTableau <- reactive ({
+    #on va regarder par personne le nb de jours par mois 
+    #si values$Staffing est null cela signifie que l'on pas importé de nouveau Dataframe
+    if (is.null(values$Staffing)) {Staff <- Staffing } 
+        else {Staff <- values$Staffing }
+    if (is.null(values$Staff_Actuel2)) {Staff2 <- Staff_Actuel2} 
+    else {Staff2 <- values$Staff_Actuel2}
+   
+    resultatDiff <- diff_data(Staff,Staff2)
+    comparaison <- as.data.frame(resultatDiff$get_matrix())
+    
+    comparaison <- compareStaff(comparaison)
+    Synthese <- comparaison %>% group_by(V1) %>% summarise(n())
+    Synthese_TOTAL <- comparaison  %>% group_by(V1)  %>% summarise(TOTAL = sum(DELTA,na.rm = TRUE))
+    colnames(comparaison)  <-  c('Changement', 'Consultant', 'Type', 'Mission', 'TOTEM', 'Total',"Semaine prev", 'Semaine','DELTA')
+    comparaison <- comparaison %>% 
+      mutate(Type= map_chr(clean_split(as.character(Type)), last_elem) ) %>%
+      filter(Type %in% input$Staff, Changement %in% input$uiModifEcart, DELTA !=0)
+    
+    comparaison <-comparaison %>% 
+      mutate(Mission=ifelse(grepl("->",Mission),paste("<font color=#BC0E1F>",Mission,"</font>"),paste(Mission,""))) %>%
+      mutate(TOTEM=ifelse(grepl("->",TOTEM),paste("<font color=#BC0E1F>",TOTEM,"</font>"),paste(TOTEM,""))) %>%
+      mutate(Total=ifelse(grepl("->",Total),paste("<font color=#BC0E1F>",Total,"</font>"),paste(Total,""))) 
+   
+    datatable(comparaison, 
+              escape = FALSE, #permet de mettre du HTML
+              rownames = FALSE,
+              options = list(
+                columnDefs = list(list(className = 'dt-center', targets = 5)),
+                pageLength = 50))  %>%
+      formatStyle(
+        'Changement',
+        target = 'row',
+        backgroundColor = styleEqual(c("+++", "---","mod"), c('#99E8D8', '#FEB7B2','#E3F2FD'))
+      )
+  }) 
+  
+#Ce code controle si on utilise le bouton permettant d'importer un fichier de Staffing, il met a jour la donnée reactivevalue Staffing et stock le nouveau
+# Dataframe au format RData
+observeEvent(input$Staffing
+               
+               , {
+                 inFile <- input$Staffing
+                 if (is.null(inFile)) return(NULL)
+                 file.copy(inFile$datapath,
+                           "Staff.xlsx",overwrite = TRUE)
+                 Staffing <-read_excel("Staff.xlsx", 1)
+                 colnames(Staffing) <- format_col_names(colnames(Staffing))
+                    Staffing <- Staffing %>% 
+                      filter(TYPE != 0)  %>% 
+                      select(CONSULTANTS,TYPE,MISSIONS,ID_TOTEM,TOTAL)
+                    save(Staffing,file="data/staffing2017.RData")
+                    
+                    resultatDiff <- diff_data(Staffing,Staff_Actuel2)
+                    comparaison <- as.data.frame(resultatDiff$get_matrix())
+                    
+                    comparaison <- compareStaff(comparaison)
+                    Synthese <- comparaison %>% group_by(V1) %>% summarise(n())
+                    Synthese_TOTAL <- comparaison  %>% group_by(V1)  %>% summarise(TOTAL = sum(DELTA,na.rm = TRUE))
+                    #d <-  comparaison  %>% filter (V1=="mod", grepl("->",V6)) 
+                    colnames(comparaison)  <-  c('Changement', 'Consultant', 'Type', 'Mission', 'TOTEM', 'Total',"Semaine prev", 'Semaine','DELTA')
+                    comparaison <- comparaison %>% filter(Type %in% input$Staff, Changement %in% input$uiModifEcart, DELTA !=0)
+                    
+                    comparaison <-comparaison %>% 
+                      mutate(Mission=ifelse(grepl("->",Mission),paste("<font color=#BC0E1F>",Mission,"</font>"),paste(Mission,""))) %>%
+                      mutate(TOTEM=ifelse(grepl("->",TOTEM),paste("<font color=#BC0E1F>",TOTEM,"</font>"),paste(TOTEM,""))) %>%
+                      mutate(Total=ifelse(grepl("->",Total),paste("<font color=#BC0E1F>",Total,"</font>"),paste(Total,""))) 
+                    log <- data.frame(DATE=as.character(Sys.time()),TYPE="Staffing",LIGNE=inFile$name)
+                    LogFichier  <- rbind(LogFichier , log)
+                   
+                    save(LogFichier ,file="data/LogFichier.RData")
+                    values$LogFichier <- LogFichier  
+                 values$comparaison <- comparaison   
+                 values$Staffing <- Staffing
+  })
+
+
+observeEvent(input$Pipe
+             
+             , {
+               inFile <- input$Pipe
+               if (is.null(inFile)) return(NULL)
+               file.copy(inFile$datapath,
+                         "Pipe.xlsx",overwrite = TRUE)
+               Pilotage <-read_excel("Pipe.xlsx", 1)
+               colnames(Pilotage) <- format_col_names(colnames(Pilotage))
+               save(Pilotage,file="data/Pilotage.RData")
+               log <- data.frame(DATE=as.character(Sys.time()),TYPE="Pipe",LIGNE=inFile$name)
+               LogFichier  <- rbind(LogFichier , log)
+               #LogGoogle <- data.frame(DATE=character(),TYPE=character(),LIGNE=character(),stringsAsFactors=FALSE)
+               print(log)
+               save(LogFichier ,file="data/LogFichier.RData")
+               values$LogFichier <- LogFichier  
+               values$Pilotage <- Pilotage   
+               
+             })
+
+observeEvent(input$go
+             
+             , {
+               if (input$go == 0) return(NULL)
+               # Create a Progress object
+               progress <- shiny::Progress$new(style = 'notification')
+               progress$set(message = "Chargement des données", value = 0)
+               # On charge la feuille google dans un dataframe (skip permet de passer les 15 premieres lignes)
+               Staff_Actuel <- gs_read(ss=BT_Pilotage, ws = "Staffing", skip=15)
+               #on va suprimer touts les colonnes X en fin de dataframe
+               progress$set(message = "Formatage des données", value = 30)
+               Sys.sleep(2)
+               
+               #on va comparer les differences entre le staffing et le Staff_Actuel
+               Staffing <- Staffing %>% 
+                 filter(TYPE != 0)  %>% 
+                 select(CONSULTANTS,TYPE,MISSIONS,ID_TOTEM,TOTAL)
+               Staff_Actuel <- prepareStaffing1(Staff_Actuel)
+               Staff_Actuel2 <- prepareStaffing2(Staff_Actuel)
+               
+               
+               #il faut regarder les lignes différentes 
+               progress$set(message = "Comparaison avec semaine passée", value = 80)
+               Sys.sleep(0.5)
+               resultatDiff <- diff_data(Staffing,Staff_Actuel2)
+               comparaison <- as.data.frame(resultatDiff$get_matrix())
+               comparaison <- compareStaff(comparaison)
+           
+               
+               #on va compter le nombre de modifs
+               progress$set(message = "Agrégation des données", value = 100)
+               Sys.sleep(0.5)
+               Synthese <- comparaison %>% group_by(V1) %>% summarise(n())
+               #Ecarts sur le staffing
+               Synthese_TOTAL <- comparaison  %>% group_by(V1)  %>% summarise(TOTAL = sum(DELTA,na.rm = TRUE))
+               
+               progress$set(message = "Chargement des données Terminé", value = 100)
+               on.exit(progress$close())
+               HTML(paste("hello", "Traitement Terminé",  sep="\n"))
+               #on ajoute une ligne à la log google
+               
+               #on ajoute une ligne à la log google
+               #browser()
+               log <- data.frame(DATE=as.character(Sys.time()),TYPE="Staffing",LIGNE=paste("Nb lignes: ",LIGNE=nrow(Staff_Actuel2)))
+               LogGoogle  <- rbind(LogGoogle , log)
+               #LogGoogle <- data.frame(DATE=character(),TYPE=character(),LIGNE=character(),stringsAsFactors=FALSE)
+               print(log)
+               save(LogGoogle ,file="data/LogGoogle.RData")
+               values$LogGoogle <- LogGoogle  
+
+               values$comparaison <- comparaison   
+               values$Staff_Actuel2 <- Staff_Actuel2
+             })
+
+  #Tableau de comparaison
+  output$DTSTAFF = DT::renderDataTable( StaffTableau())
+  #Tableau qui affiche le staffing contenu dans le fichier Excel
+  output$DTSTAFFING = DT::renderDataTable( values$Staffing )
+  
+  
+  PipeTableau <- reactive ({
+    #on va regarder par personne le nb de jours par mois 
+    #si values$Staffing est null cela signifie que l'on pas importé de nouveau Dataframe
+   
+    if (is.null(values$Pilotage)){ Pil <- Pilotage}
+      else {Pil <- values$Pilotage }
+    if (is.null(values$Pilotage_Actuel)){Pil_Act <- Pilotage_Actuel}
+      else {Pil_Act <- values$Pilotage_Actuel }
+    
+    #il faut regarder les lignes différentes 
+    Pilotage <- Pil %>% select(COMPTE,ASSOCIE, SUJET,STEP,PROB,CODE_TOTEM,TOTAL_CA_VENDU_N__KE)
+    #Pilotage_Actuel <- preparePipe1(values$Pilotage_Actuel)
+    resultatDiff <- diff_data(Pil ,Pil_Act)
+    comparaisonP <- as.data.frame(resultatDiff$get_matrix())
+    
+    #on conserve les lignes en écarts
+    comparaisonP <- comparaisonP %>% filter(! V4 %in%  c("ZZ_NE RIEN AJOUTER SOUS CETTE LIGNE",NA)) %>%
+      mutate(V1= as.character(V1))%>% 
+      filter(V1 %in% c("+++","---","->")) %>%
+      mutate(V1= ifelse(V1=="->","mod",V1)) %>% 
+      filter (V1 == "+++"|V1 == "---"|(V1=="mod" & grepl("->",paste(V5,V6,V8) ))) %>%
+      mutate(V5= ifelse(grepl("->",V5),as.character(V5),paste(V5,"->",V5))) %>%
+      mutate(V9= ifelse(grepl("->",V8),as.character(V8),paste(V8,"->0"))) %>%
+      separate(V9, into = c("SPrev","S"), sep = "->",convert=TRUE) %>% 
+      separate(V5, into = c("STEPPrev","STEP"), sep = "->",convert=TRUE) %>%
+      mutate(STEP=trimws(STEP))
+    comparaisonP$S <- as.numeric(remplaceVal(comparaisonP$S ))
+    comparaisonP$SPrev <- as.numeric(remplaceVal(comparaisonP$SPrev ))
+    
+    comparaisonP <- comparaisonP %>%
+      mutate(S=ifelse(V1=="+++",as.numeric(SPrev),as.numeric(S))) %>%
+      mutate(S=ifelse(V1=="mod",
+                      ifelse(grepl("->",V8),S,as.numeric(SPrev)),as.numeric(S))) %>%
+      mutate(SPrev= ifelse(V1=="+++",0,as.numeric(SPrev)))%>%
+      mutate(DELTA=ifelse(V1=="+++",S,
+                          ifelse(V1=="---",-SPrev,S - SPrev))) %>% filter(abs(DELTA)>0.5)
+    
+    SyntheseP <- comparaisonP %>% group_by(V1) %>% summarise(n())
+    
+    comparaisonP <- comparaisonP %>% mutate(V4= map_chr(clean_split(as.character(V4)), last_elem) ) %>%
+      mutate(V7= map_chr(clean_split(as.character(V7)), last_elem) ) %>%
+      mutate(V6= ifelse(grepl("->",V6),as.character(V6),paste(V6,"->",V6))) %>%
+      separate(V6, into = c("V6_1","V6_2"), sep = "->",convert=TRUE)
+    
+    #Ecarts sur le staffing
+    Synthese_TOTALP <- comparaisonP  %>% group_by(V1)  %>% summarise(TOTAL = sum(DELTA,na.rm = FALSE))
+    dP <-  comparaisonP  %>% filter (V1=="mod", grepl("->",V8))
+    
+    
+    
+    colnames(comparaisonP)  <-   c('Changement',"COMPTE","ASSOCIE", "SUJET","STEP Prev","STEP","PROB prev","PROB",
+                                   "TOTEM","TOTAL_CA","Sem. prev", 'Semaine','DELTA')
+     # <-  map(comparaisonP,SplitColonne (V7))
+    comparaisonP <- comparaisonP %>% filter(STEP %in% input$STEP, Changement %in% input$EcartP) %>%
+      mutate(DELTA=sprintf("%0.2f", round(DELTA, digits = 2)))
+  
+    datatable(comparaisonP, 
+              escape = FALSE, #permet de mettre du HTML
+              rownames = FALSE,
+              options = list(
+                columnDefs = list(list(className = 'dt-center', targets = 5)),
+                pageLength = 50))  %>%
+      formatStyle(
+        'Changement',
+        target = 'row',
+        backgroundColor = styleEqual(c("+++", "---","mod"), c('#99E8D8', '#FEB7B2','#E3F2FD'))
+      )
+  }) 
+  
+  output$DTPIPE = DT::renderDataTable( PipeTableau())
+  
+  output$LogPIPE = DT::renderDataTable( 
+   
+    if (is.null(values$LogGoogle)){LogGoogle %>% arrange(desc(DATE))} 
+    else {values$LogGoogle %>% arrange(desc(DATE))}
+    
+    )
+  
+  output$LogSTAFF = DT::renderDataTable( 
+    
+    if (is.null(values$LogFichier)){LogFichier  %>% arrange(desc(DATE))} 
+    else {values$LogFichier  %>% arrange(desc(DATE))}
+    
+  )
+  
+  observeEvent(input$goP
+               
+               , {
+                 if (input$goP == 0) return(NULL)
+                 # Create a Progress object
+                 progress <- shiny::Progress$new(style = 'notification')
+                 progress$set(message = "Chargement des données PIPE Google", value = 0)
+                
+                 Pilotage_Actuel <- gs_read(ss=BT_Pilotage, ws = "Pipe", skip=4)
+                 
+                 progress$set(message = "Formatage des données", value = 30)
+                 Sys.sleep(2)
+                 Pilotage_Actuel <- preparePipe1(Pilotage_Actuel)
+                 Pilotage <- Pilotage %>% select(COMPTE,ASSOCIE, SUJET,STEP,PROB,CODE_TOTEM,TOTAL_CA_VENDU_N__KE) 
+                 #il faut regarder les lignes différentes 
+                 
+                 #il faut regarder les lignes différentes 
+                 progress$set(message = "Comparaison avec semaine passée", value = 80)
+                 resultatDiff <- diff_data(Pilotage,Pilotage_Actuel)
+                 comparaisonP <- as.data.frame(resultatDiff$get_matrix())
+                 Sys.sleep(3)
+                 #on conserve les lignes en écarts
+                 progress$set(message = "Agrégation des données", value = 100)
+                 Sys.sleep(0.5)
+                 comparaisonP <- comparaisonP %>% filter(! V4 %in%  c("ZZ_NE RIEN AJOUTER SOUS CETTE LIGNE",NA)) %>%
+                   mutate(V1= as.character(V1))%>% 
+                   filter(V1 %in% c("+++","---","->")) %>%
+                   mutate(V1= ifelse(V1=="->","mod",V1)) %>% 
+                   mutate(V5= ifelse(grepl("->",V5),as.character(V5),paste(V5,"->",V5))) %>%
+                   mutate(V9= ifelse(grepl("->",V8),as.character(V8),paste(V8,"->0"))) %>%
+                   separate(V9, into = c("SPrev","S"), sep = "->",convert=TRUE) %>% 
+                   separate(V5, into = c("STEPPrev","STEP"), sep = "->",convert=TRUE) %>%
+                   mutate(STEP=trimws(STEP))
+                 
+                 comparaisonP$S <- as.numeric(remplaceVal(comparaisonP$S ))
+                 comparaisonP$SPrev <- as.numeric(remplaceVal(comparaisonP$SPrev ))
+                 
+                 comparaisonP <- comparaisonP %>%
+                   mutate(S=ifelse(V1=="+++",as.numeric(SPrev),as.numeric(S))) %>%
+                   mutate(S=ifelse(V1=="mod",
+                                   ifelse(grepl("->",V8),S,as.numeric(SPrev)),as.numeric(S))) %>%
+                   mutate(SPrev= ifelse(V1=="+++",0,as.numeric(SPrev)))%>%
+                   mutate(DELTA=ifelse(V1=="+++",S,
+                                       ifelse(V1=="---",-SPrev,S - SPrev)))
+                 
+                 progress$set(message = "Chargement des données", value = 100)
+                 on.exit(progress$close())
+                 #on ajoute une ligne à la log google
+                 #browser()
+                 log <- data.frame(DATE=as.character(Sys.time()),TYPE="Pipe",LIGNE=paste("Nb lignes: ",LIGNE=nrow(Pilotage_Actuel)))
+                 LogGoogle  <- rbind(LogGoogle , log)
+                 #LogGoogle <- data.frame(DATE=character(),TYPE=character(),LIGNE=character(),stringsAsFactors=FALSE)
+                 print(log)
+                 save(LogGoogle ,file="data/LogGoogle.RData")
+                 values$LogGoogle <- LogGoogle  
+                 values$comparaisonP <- comparaisonP   
+                 values$Pilotage_Actuel <- Pilotage_Actuel
+               })
+  
+  
+  output$PipeText <- renderUI({
+    
+    if (is.null(values$LogFichier)) {
+
+      str1 <- paste("Données de référence importées le : ", tail(LogFichier[LogFichier$TYPE=="Pipe",],1)[1,1],
+            " Fichier:", tail(LogFichier[LogFichier$TYPE=="Pipe",],1)[1,3] )
+    } else {
+
+      str1 <- paste("Données de référence importées le : ", tail(values$LogFichier[values$LogFichier$TYPE=="Pipe",],1)[1,1],
+            " Fichier:", tail(values$LogFichier[values$LogFichier$TYPE=="Pipe",],1)[1,3])
+    }
+    if (is.null(values$LogGoogle)) {
+      
+      str2 <- paste("Données de référence importées le : ", tail(LogGoogle[LogGoogle$TYPE=="Pipe",],1)[1,1],
+                   " Fichier:", tail(LogGoogle[LogGoogle$TYPE=="Pipe",],1)[1,3] )
+    } else {
+      
+      str2 <- paste("Importation Onglet Pipe Google  : ", tail(values$LogGoogle[values$LogGoogle$TYPE=="Pipe",],1)[1,1],
+                   " Fichier:", tail(values$LogGoogle[values$LogGoogle$TYPE=="Pipe",],1)[1,3])
+    }
+    HTML(paste("<DIV>",paste(str1, str2, sep = '<br/>'),"</DIV>"))
+    
+    })
+  
+  output$StaffText <- renderUI({
+    if (is.null(values$LogFichier)) {
+      
+      str1 <- paste("Données de référence importées le : ", tail(LogFichier[LogFichier$TYPE=="Staffing",],1)[1,1],
+                    " Fichier:", tail(LogFichier[LogFichier$TYPE=="Staffing",],1)[1,3] )
+    } else {
+      
+      str1 <- paste("Données de référence importées le : ", tail(values$LogFichier[values$LogFichier$TYPE=="Staffing",],1)[1,1],
+                    " Fichier:", tail(values$LogFichier[values$LogFichier$TYPE=="Staffing",],1)[1,3])
+    }
+    if (is.null(values$LogGoogle)) {
+      
+      str2 <- paste("Données de référence importées le : ", tail(LogGoogle[LogGoogle$TYPE=="Staffing",],1)[1,1],
+                    " Fichier:", tail(LogGoogle[LogGoogle$TYPE=="Pipe",],1)[1,3] )
+    } else {
+      
+      str2 <- paste("Importation Google de référence  : ", tail(values$LogGoogle[values$LogGoogle$TYPE=="Staffing",],1)[1,1],
+                    " Fichier:", tail(values$LogGoogle[values$LogGoogle$TYPE=="Pipe",],1)[1,3])
+    }
+    HTML(paste("<DIV>",paste(str1, str2, sep = '<br/>'),"</DIV>"))
+  })
+}

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1497446357585.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3BEA623C",
+    "lastKnownWriteTime" : 8247620673973526562,
+    "last_content_update" : 1497446357585,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "D34E4AAF",
+        "caption" : "couleur",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=couleur&cache_key=D34E4AAF",
+        "displayedObservations" : 7,
+        "environment" : "",
+        "object" : "couleur",
+        "preview" : 0,
+        "totalObservations" : 7,
+        "variables" : 1
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

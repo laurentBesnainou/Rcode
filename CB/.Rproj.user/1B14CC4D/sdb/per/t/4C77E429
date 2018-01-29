@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1499255833401.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4C77E429",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1499255833401,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C6EF199A",
+        "caption" : "p2017_lm_Graphe",
+        "contentUrl" : "grid_resource/gridviewer.html?env=_rs_no_env&obj=p2017_lm_Graphe&cache_key=C6EF199A",
+        "displayedObservations" : 12,
+        "environment" : "_rs_no_env",
+        "object" : "p2017_lm_Graphe",
+        "preview" : 0,
+        "totalObservations" : 12,
+        "variables" : 2
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

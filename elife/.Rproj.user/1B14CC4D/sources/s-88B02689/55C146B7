@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1505214289377.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "55C146B7",
+    "lastKnownWriteTime" : 1505730020,
+    "last_content_update" : 1505730020253,
+    "path" : "D:/tmp/elife/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "cursorPosition" : "28,27",
+        "scrollLine" : "12",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

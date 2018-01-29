@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1504092782779.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AED01F83",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1504092782779,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "BE9BB4BE",
+        "caption" : "seq_Asso",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=seq_Asso&cache_key=BE9BB4BE",
+        "displayedObservations" : 566,
+        "environment" : "",
+        "object" : "seq_Asso",
+        "preview" : 0,
+        "totalObservations" : 566,
+        "variables" : 7
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

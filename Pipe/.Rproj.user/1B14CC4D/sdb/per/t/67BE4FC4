@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\n\ndashboardPage(skin = \"blue\",\n              dashboardHeader(title = \"PipeViz - BT\", titleWidth = 150),\n              dashboardSidebar(\n                sidebarMenu(\n                  \n                  menuItem(\"Niveau du pipe\", tabName = \"Mediane\", icon = icon(\"tachometer\")),\n                  menuItem(\"Montant du Pipe\", tabName = \"map\", icon = icon(\"bar-chart-o\")),\n                  menuItem(\"planning People\", tabName = \"planning\", icon = icon(\"calendar\")),\n                  menuItem(\"planning Mission\", tabName = \"planningM\", icon = icon(\"tasks\", lib = \"glyphicon\")),\n                  tags$hr())\n              ),\n              dashboardBody(\n                tabItems(\n                  tabItem(tabName = \"Mediane\",\n                          fluidRow(\n                            checkboxGroupInput(\"Courbes\", \"courbes à afficher:\",inline = TRUE,\n                                               c(2015,2016),selected = \"Objectif 2017\"),\n                            highchartOutput(\"hcontainer\", height = \"500px\")\n                                  )\n                  ),\n                  tabItem(tabName = \"map\",\n                          fluidRow(\n                            highchartOutput(\"hcTree\")\n                                   \n                          )\n                  ),\n                  tabItem(tabName = \"planning\",\n                          fluidRow(column(width = 11, offset = 1, style='padding:3px;'\n                                         \n                          ))\n                  ),\n                  tabItem(tabName = \"planningM\",\n                          fluidRow(column(width = 11, offset = 1, style='padding:3px;'\n                          ))\n                  )\n                  \n                  \n                )\n                \n                \n                \n                \n                \n                \n                \n              )\n)\n\n",
+    "created" : 1501243858348.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2487420599",
+    "id" : "67BE4FC4",
+    "lastKnownWriteTime" : 1501256575,
+    "last_content_update" : 1501256575504,
+    "path" : "D:/tmp/Pipe/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

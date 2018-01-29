@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1493811617679.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "73F15D2E",
+    "lastKnownWriteTime" : 1498737020,
+    "last_content_update" : 1498737020348,
+    "path" : "D:/tmp/Ecarts/Global.R",
+    "project_path" : "Global.R",
+    "properties" : {
+        "cursorPosition" : "2,21",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

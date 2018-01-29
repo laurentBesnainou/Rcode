@@ -1,0 +1,13 @@
+name: DB_V1_Pipe
+title: DB_V1_Pipe
+username:
+account: demodashboard
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 219940
+bundleId: 1039608
+url: https://demodashboard.shinyapps.io/DB_V1_Pipe/
+when: 1508695663.13405
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: r-reporters-simple-word-document.docx

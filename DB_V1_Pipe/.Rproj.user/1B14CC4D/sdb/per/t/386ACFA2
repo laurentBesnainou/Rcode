@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "dashboardPage(skin = \"blue\",\n              dashboardHeader(title = \"PipeViz - BT\", titleWidth = 150),\n              dashboardSidebar(\n                sidebarMenu(\n                  menuItem(\"Pipe en cours\", tabName = \"Pipe\", icon = icon(\"tachometer\")),\n                  menuItem(\"Analyse Pipe\", tabName = \"Analyse\", icon = icon(\"bar-chart-o\")),\n                  tags$hr())\n              ),\n              dashboardBody(\n                tabItems(\n                  tabItem(tabName = \"Pipe\",\n                          h1(\"Répartition du Pipe\"),\n                          plotOutput(\"Pipe_Repartition\"),\n                          h1(\"Répartition par step\"),\n                          plotOutput(\"Pipe_Step\")\n                  ),\n                  tabItem(tabName = \"Analyse\",\n                          h1(\"Répartition du Pipe\"),\n                          checkboxGroupInput(\"uiStep\",label =\"Step\",\n                                             choices = list(\"0 - A qualifier\"  , \"1 - Qualifiée\" , \"2 - A émettre\" ,\"3 - Emise\"),\n                                             inline = TRUE,\n                                             selected = c(\"3 - Emise\")),\n                          D3partitionROutput(\"D3PartTree\")\n                          \n                        \n                          \n                          \n                  )\n                  \n                  \n                  )\n                  \n                  \n                )\n                \n                \n              \n)\n\n",
+    "created" : 1504092190978.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1010209615",
+    "id" : "386ACFA2",
+    "lastKnownWriteTime" : 1504094084,
+    "last_content_update" : 1504094084188,
+    "path" : "D:/tmp/DB_V1_Pipe/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

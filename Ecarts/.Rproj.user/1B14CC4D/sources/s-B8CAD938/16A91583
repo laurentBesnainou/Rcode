@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1513245610673.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "16A91583",
+    "lastKnownWriteTime" : 1513245607,
+    "last_content_update" : 1513245607,
+    "path" : "C:/Users/lbe/AppData/Local/Temp/Temp1_Ecarts.zip/Ecarts/server.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "377,15",
+        "scrollLine" : "364"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

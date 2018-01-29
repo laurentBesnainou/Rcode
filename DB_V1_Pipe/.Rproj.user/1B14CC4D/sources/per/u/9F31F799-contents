@@ -1,0 +1,89 @@
+library(devtools)
+devtools::install_github('davidgohel/ReporteRsjars')
+devtools::install_github('davidgohel/ReporteRs')
+install.packages(c('ReporteRs', 'haven', 'vcd', 'ggplot2', 'reshape2'))
+library(ReporteRs)
+library(haven)
+library(vcd)
+library(ggplot2)
+library(reshape2)
+dat = read_spss("http://wiki.q-researchsoftware.com/images/9/94/GSSforDIYsegmentation.sav")
+filename = "c://delete//Significant crosstabs.pptx" # the document to produce
+document = pptx(title = "My significant crosstabs!")
+alpha = 0.05 # The level at which the statistical testing is to be done.
+dependent.variable.names = c("wrkstat", "marital", "sibs", "age", "educ")
+all.names = names(dat)[6:55] # The first 50 variables int the file.
+counter = 0
+for (nm in all.names)
+  for (dp in dependent.variable.names)
+  {
+    if (nm != dp)
+    {
+      v1 = dat[[nm]]
+      if (is.labelled(v1))
+        v1 = as_factor(v1)
+      v2 = dat[[dp]]
+      l1 = attr(v1, "label")
+      l2 = attr(v2, "label")
+      if (is.labelled(v2))
+        v2 = as_factor(v2)
+      if (length(unique(v1)) <= 10 <= 10) # Only performing tests if 10 or fewer rows and columns. { 
+        x = xtabs(~v1 + v2) 
+      x = x[rowSums(x) > 0, colSums(x) > 0]
+      ch = chisq.test(x)
+      p = ch$p.value
+      if (!is.na(p) && p <= alpha)
+      {
+        counter = counter + 1
+        # Creating the outputs.
+        crosstab = prop.table(x, 2) * 100
+        melted = melt(crosstab)
+        melted$position = 100 - as.numeric(apply(crosstab, 2, cumsum) - 0.5 * crosstab)
+        p <- ggplot(melted, aes(x = v2, y = value,fill = v1)) + geom_bar(stat='identity')
+        p  <-  p + geom_text(data = melted, aes(x = v2, y = position, label = paste0(round(value, 0),"%")), size=4)
+        p  <-  p + labs(x = l2, y = l1)
+        colnames(crosstab)  <-  paste0(colnames(crosstab), "%")
+        #bar = ggplot() + geom_bar(aes(y = v1, x = v2), data = data.frame(v1, v2), stat="identity")
+        # Writing them to the PowerPoint document.
+        document = addSlide(document, slide.layout = "Title and Content" )
+        document = addTitle(document, paste0("Standardized residuals and chart: ", l1, " by ", l2))
+        document = addPlot(doc = document, fun = print, x = p, offx = 3, offy = 1, width = 6, height = 5 )
+        document = addFlexTable(doc = document, FlexTable(round(ch$stdres, 1), add.rownames = TRUE),offx = 8, offy = 2, width = 4.5, height = 3 )
+      }
+    }
+    
+  }
+}
+writeDoc(document, file = filename )        
+cat(paste0(counter, " tables and charges exported to ", filename, "."))
+
+
+library(ReporteRs)
+library(magrittr)
+
+mydoc <- docx() %>%
+  addParagraph(value = 'Correlation matrix', style='Titre2') %>%
+  addParagraph(value='Estimates') %>%
+  addFlexTable(FlexTable(cormat)) %>%
+  addParagraph(value = 'P-values') %>%
+  addFlexTable(FlexTable(corpval)) %>%
+  addParagraph(value = "Boxplots", style='Titre2') %>%
+  addPlot(fun=print, x = plt, height=3, width=5) %>%
+  writeDoc(file = 'Report.docx')
+
+
+
+library(ReporteRs)
+# Create a word document to contain R outputs
+doc <- docx()
+# Add a title to the document
+doc <- addTitle(doc, "Simple Word document", level=1)
+# Add a paragraph of text into the Word document 
+doc <- addParagraph(doc, "This simple Word document is created using R software and ReporteRs package. It contains just a simple text.")
+# Add a sub title
+doc <- addTitle(doc, "What is R language?", level = 2) 
+doc <- addParagraph(doc, "R is a language and environment for statistical computing and graphics. R provides a wide variety of statistical and graphical techniques, and is highly extensible.")
+doc <- addTitle(doc, "What is ReporteRs", level = 2)
+doc <- addParagraph(doc, "ReporteRs is a package to write and format easily a Word document from R software.")
+# Write the Word document to a file 
+writeDoc(doc, file = "r-reporters-simple-word-document.docx")

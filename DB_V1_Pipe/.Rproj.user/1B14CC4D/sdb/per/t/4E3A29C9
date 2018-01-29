@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "server <- function(input, output, session) {\n  \n  output$Pipe_Repartition <- renderPlot({\n\n    \n    data <- pipe %>% \n      filter(WEEK==max(pipe$WEEK)) %>% \n      group_by(OFFRE_PRINCIPALE) %>%\n      summarise(Budget= round(sum(TOTAL_CA_VENDU_N__KE,na.rm =TRUE ),digits=0))\n    \n    ggplot(data,aes(x=OFFRE_PRINCIPALE,y=Budget)) + \n      geom_bar(stat = \"identity\",\n               aes(fill = OFFRE_PRINCIPALE ))+\n      geom_text(aes(label = Budget),size = 5,  position=position_dodge(width=0.9), vjust=-0.2)+\n      theme_economist() + scale_colour_economist() +\n      guides(color=guide_legend(\"my title\"))\n   \n    \n  })\n  output$Pipe_Step <- renderPlot({\n    \n    \n    data <- pipe %>% \n      filter(WEEK==max(pipe$WEEK)) %>% \n      group_by(STEP,OFFRE_PRINCIPALE) %>%\n      summarise(Budget= round(sum(TOTAL_CA_VENDU_N__KE,na.rm =TRUE ),digits=0)) %>%\n      mutate(countT= sum(Budget)) %>%\n      group_by(STEP,OFFRE_PRINCIPALE, add=TRUE) %>% \n      mutate(per=round(100*Budget/countT,2))\n\n    \n    \n    ggplot(data,aes(x=STEP,y=Budget,label = Budget,group = STEP)) + \n      geom_bar(stat = \"identity\",\n               aes(fill = OFFRE_PRINCIPALE ))+\n      geom_text(aes(label = Budget, y = Budget),position=\"stack\",size = 5,   vjust=0.9)+\n      theme_economist() + scale_colour_economist() +\n      \n      \n      guides(color=guide_legend(\"my title\"))\n    \n    \n  })\n  \n  \n  \n  ########### sunburst\n  combo_output <- function(STEP_List){\n    seq_Asso <- pipe %>%\n      filter(WEEK==max(pipe$WEEK),STEP %in% STEP_List) %>% \n      group_by(GROUPE, OFFRE_PRINCIPALE,ASSOCIE,SECTEUR,SUJET, STEP) %>%\n      summarize(CA = sum(TOTAL_CA_VENDU_N__KE,na.rm=TRUE)) %>% mutate (DEBUT = \"Pipe BT\")\n    \n    seq_Asso$GROUPE[is.na(seq_Asso$GROUPE)] <- \"Non Renseigné\"\n    seq_Asso$OFFRE_PRINCIPALE[is.na(seq_Asso$OFFRE_PRINCIPALE)] <- \"Non Renseigné\"\n    seq_Asso$ASSOCIE[is.na(seq_Asso$ASSOCIE)] <- \"Non Renseigné\"\n    seq_Asso$SECTEUR[is.na(seq_Asso$SECTEUR)] <- \"Non Renseigné\"\n    seq_Asso$SUJET[is.na(seq_Asso$SUJET)] <- \"Non Renseigné\"\n    \n    \n    \n    \n    \n    nom <- list()\n    nb_1 <- length(seq_Asso$ASSOCIE)\n    \n    for (i in 1:nb_1) {\n      nom[[i]] <- c(seq_Asso$DEBUT[i], seq_Asso$STEP[i],  seq_Asso$OFFRE_PRINCIPALE[i],seq_Asso$ASSOCIE[i],seq_Asso$GROUPE[i],seq_Asso$SUJET[i])\n      \n    }\n    CA_TOTAL <- c(seq_Asso$CA)\n    combo_output <- list(path = nom, value = CA_TOTAL)\n  }\n  \n  output$D3PartTree <- renderD3partitionR(\n    \n    D3partitionR( data=list(path=combo_output(input$uiStep)$path,value=combo_output(input$uiStep)$value),type=\"treeMap\",\n                  tooltipOptions = list(showAbsolutePercent = T, showRelativePercent = T),\n                  \n                  # legend=list(type=\"sequential\",no_show = FALSE,\n                  #             color=list(\"ORE\"=\"#E589B4\", \"JSO\"=\"#C9C5E5\", \"OGR\" = \"#50E5D6\",\n                  #                        \"JPP\" = \"#99F8FF\", \"MMO\"= \"#FF9770\", \n                  #                        \"UHE\"=\"#E9FF70\", \"Transformation\"=\"#0BA\",\"ETM\"=\"#AA1\",\"Data\"=\"#ECC\")), \n                  trail = TRUE,\n                  Input=list(enabled=T,Id=\"D3PartTreee\",clickedStep=T,\n                             currentPath=T,visiblePaths=T,visibleLeaf=T,visibleNode=T),\n                  \n                  width = 600,height = 600)\n  )\n \n  \n}",
+    "created" : 1503920631723.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1248887924",
+    "id" : "4E3A29C9",
+    "lastKnownWriteTime" : 1504267149,
+    "last_content_update" : 1504267149302,
+    "path" : "D:/tmp/DB_V1_Pipe/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

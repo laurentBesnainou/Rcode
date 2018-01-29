@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\nlibrary(rvest)\n\nlibrary(tm)  # ce package propose un ensemble de fonctions facilitant le traitement de donnees textuelles\nlibrary(wordcloud)  # ce package permet la creation de wordcloud\nlibrary(wordcloud2)  # ce package permet la creation de wordcloud\nlibrary(RColorBrewer)\nlibrary(readr)\nmystring <- read_file(\"anil.txt\")\n# \n# \n# text_Anil <- html(\"https://www.anil.org/copropriete-financement-travaux/\")\n# \n\n# txt <- text_Anil %>% \n#   html_node(\".col-sm-9\") %>%\n#   html_text()\n\n \n# text_Anil <- read\n\ntext_corpus <- Corpus(VectorSource(mystring))\ntext_corpus <- tm_map(text_corpus, content_transformer(tolower))\n text_corpus <- tm_map(text_corpus, removePunctuation)\ntext_corpus <- tm_map(text_corpus, function(x)removeWords(x,stopwords(kind = \"fr\")))\ntext_corpus <- tm_map(text_corpus, removeWords, c(\"chaque\", \"notamment\", \"savoir\", \"chaque\", \"lorsqu'\", \"celle\", \"non\",\n                                                      \"dune\", \"ainsi\", \"faire\", \"lors\",\n                                                      \"peut\",\"peuvent\",\"doivent\",\"doit\", \"ans\", \"catastrophe\",\"000\")) \n\n\ndtm <- TermDocumentMatrix(text_corpus)\nm <- as.matrix(dtm)\nv <- sort(rowSums(m),decreasing=TRUE)\nd <- data.frame(word = names(v),freq=v)\nhead(d, 50)\n\nset.seed(1234)\n# save the image in png format\n\nlibrary(webshot)\n\nwordcloud2(d, size = 1, minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 1)\n# Make the graph\nmy_graph<- wordcloud2(d, size = 1, minRotation = -pi/6, maxRotation = -pi/6, rotateRatio = 2)\n\n# save it in html\nlibrary(\"htmlwidgets\")\nsaveWidget(my_graph,\"tmp.html\",selfcontained = F)\n\n# and in pdf\nwebshot(\"tmp.html\",\"fig_2.pdf\", delay =5, vwidth = 800, vheight=600)\n\nmy_path  <- htmltools::html_print(my_cloud) # saves html in temp directory\nprint(my_path) # the location of the html file.\ndev.off()\n\n\nwordcloud(words = d$word, freq = d$freq, min.freq = 1,\n          max.words=400, random.order=FALSE, rot.per=0.2, \n          colors= brewer.pal(8,\"Dark2\"))\n\n# save the image in png format\npng(\"Anil.png\", width=12, height=8, units=\"in\", res=800)\n\n\nwordcloud(words = d$word, max.words=200, min.freq = 1,random.color = TRUE,\n          random.order=FALSE, rot.per=0.35, scale=c(4, 0.5), colors= c(\"indianred1\",\"indianred2\",\"indianred3\",\"indianred\"))\n\ndev.off()\n\n\nliste <- c(\"parcours_résidentiel\", \"projet\", \"intérêts_intercalaires\", \"PTZ\", \"mensualité_modulable\", \"trajets\",\n\"performances énergétique\", \"anticipation\", \"acquisition_amélioration\", \"construction\", \"famille\", \"prêteur\", \n\"taxes_d'urbanisme\", \"épargne\", \"charges\", \"copropriété\", \"rénovation\", \n           \"compromis\", \"réservation\", \"tableau_d'amortissement\", \"pédagogie\", \"personnalisation\", \"sécurisation\")\nprob <- 1:12 * \nset.seed(1234)\nsample(1:100,23)\n\ns <- sample(liste,replace = TRUE,200,runif(21, 0, 1))\nquantile(s, probs=seq(0,1,1/23))\n\ntext_corpus <- Corpus(VectorSource(s))\ntext_corpus <- data.frame(Data = sample(liste,replace = TRUE,200))\ndtm <- TermDocumentMatrix(text_corpus)\nm <- as.matrix(dtm)\nv <- sort(rowSums(m),decreasing=TRUE)\nd <- data.frame(word = names(v),freq=v)\nhead(d, 10)\n",
+    "created" : 1487761860131.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2138267",
+    "id" : "81496248",
+    "lastKnownWriteTime" : 1487776810,
+    "last_content_update" : 1487785620427,
+    "path" : "D:/tmp/ML/anil.R",
+    "project_path" : "anil.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

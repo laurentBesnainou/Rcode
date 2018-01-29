@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1499255816705.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3FF012D2",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1499255816705,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "A26D5112",
+        "caption" : "plot_chat",
+        "contentUrl" : "grid_resource/gridviewer.html?env=_rs_no_env&obj=plot_chat&cache_key=A26D5112",
+        "displayedObservations" : 12,
+        "environment" : "_rs_no_env",
+        "object" : "plot_chat",
+        "preview" : 0,
+        "totalObservations" : 12,
+        "variables" : 3
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

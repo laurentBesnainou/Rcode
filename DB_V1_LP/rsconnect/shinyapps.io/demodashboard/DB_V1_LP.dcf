@@ -1,0 +1,13 @@
+name: DB_V1_LP
+title: DB_V1_LP
+username:
+account: demodashboard
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 219939
+bundleId: 1039611
+url: https://demodashboard.shinyapps.io/DB_V1_LP/
+when: 1508695706.72019
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: data/train.csv

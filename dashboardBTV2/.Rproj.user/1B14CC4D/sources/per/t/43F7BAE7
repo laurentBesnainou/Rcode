@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1493573907811.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2166532597",
+    "id" : "43F7BAE7",
+    "lastKnownWriteTime" : 1499168187,
+    "last_content_update" : 1499168187221,
+    "path" : "D:/tmp/dashboardBTV2/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "cursorPosition" : "398,5",
+        "scrollLine" : "394"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

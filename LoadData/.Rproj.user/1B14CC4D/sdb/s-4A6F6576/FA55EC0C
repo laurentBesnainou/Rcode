@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1488883766122.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "FA55EC0C",
+    "lastKnownWriteTime" : 721795311659384833,
+    "last_content_update" : 1488883766122,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "EBD933A8",
+        "caption" : "pilotage_data",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=pilotage_data&cache_key=EBD933A8",
+        "displayedObservations" : "2205",
+        "environment" : "",
+        "object" : "pilotage_data",
+        "preview" : "0",
+        "totalObservations" : "2205",
+        "variables" : "29"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

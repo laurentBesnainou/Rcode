@@ -1,0 +1,9 @@
+{
+    "path" : "D:/tmp/DB_V1_PROD",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
