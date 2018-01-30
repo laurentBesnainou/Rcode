@@ -40,11 +40,14 @@ body <- dashboardBody(
              #          box( width = 12,
              #               div(dataTableOutput("DT_win"), style = "font-size:80%"))
              #          ),
-             tabPanel("Evolution dans le temps", box( width = 12,actionButton("button", "Recharger les données Azure"),
+             tabPanel("Evolution dans le temps", box( width = 12,actionButton("button", "Actualiser  données Pipe"),
                                                       plotOutput("Pipe_Repartition"),
                                                       plotOutput("Win_Repartition"))
                       ),
-             tabPanel("Evolution Staffing", box( width = 12,actionButton("buttonHisto", "Recharger les données Azure"),
+             tabPanel("Evolution Staffing", box( width = 12,actionButton("buttonStaff", "Actualiser données Staffing"),
+                                                 selectInput("Semaine", label = h3("choix semaine"), 
+                                                             choices = c(1:(week(now())-1)), 
+                                                             selected = week(now())-1),
                                                       plotOutput("Staffing"),
                                                  plotOutput("StaffingGrade"),
                                                  plotOutput("StaffingHeat"),

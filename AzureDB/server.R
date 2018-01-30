@@ -4,6 +4,7 @@ shinyServer(function(input, output, session) {
   
   chargement <- reactiveValues()
   chargement$HistoriqueCA <- HistoriqueCA
+  chargement$HistoriqueStaffing <- HistoriqueStaffing
   output$TotalBox <- renderValueBox({
     
     data <- QueryCA %>% filter (etape %in% c("0 - A qualifier", "1 - Qualifiée", "2 - A émettre", "3 - Emise")) %>%
@@ -187,6 +188,41 @@ shinyServer(function(input, output, session) {
     
   )
 
+  observeEvent(input$buttonStaff, {
+    #on va regarder sauvegarder les données
+    cat("Showing", input$x, "rows\n")
+    
+    conn <- odbcDriverConnect('driver={SQL Server Native Client 11.0};server=airmis-colmngt-db.database.windows.net,1433;database=airmis-pilotage-prod;Uid=pwbi;Pwd=4:j45_XcN4;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
+    
+   
+    
+    #on sauvegarde les données historique
+    load("HistoriqueCA.RData")
+    progress <- shiny::Progress$new(style = 'notification')
+    progress$set(message = "Chargement du Staffing", value = 10)
+    
+    #on récupere les tables Pipe CA_Pipe et Staffing BT
+    bt_staffingbt  <- sqlQuery(conn, "SELECT * FROM bt_staffingbt;")
+    
+    #bt_pipeTotemCAStaffing <- left_join(bt_pipeTotemCA, bt_staffingbt, by = c("totem_id" = "totem_id"))
+    progress$set(message = "Fermeture de la connexion", value = 100)
+    close(conn)
+    on.exit(progress$close())
+    bt_staffingbt <- bt_staffingbt %>% mutate (Mois=month(date_staffing)) %>%
+      mutate(Annee=year(date_staffing)) %>% mutate (Semaine=week(date_staffing)) %>% mutate (week=week(now()))
+    
+    
+    chargement$HistoriqueStaffing <- chargement$HistoriqueStaffing %>% filter(week !=week(now()) )
+    
+    chargement$HistoriqueStaffing <- rbind(chargement$HistoriqueStaffing, bt_staffingbt)
+    
+    HistoriqueStaffing <- chargement$HistoriqueStaffing
+    #on efface la semaine courante si elle existe
+    save(HistoriqueStaffing,file="HistoriqueStaffing1.RData")
+    
+  })
+  
+  
   
   observeEvent(input$button, {
     #on va regarder sauvegarder les données
@@ -213,7 +249,7 @@ shinyServer(function(input, output, session) {
                      FROM bt_pipebt, bt_capipebt WHERE pipe_id=bt_pipebt.id AND annee=2018;")
     bt_pipeTotem <- left_join(bt_pipebt, groupe_totem, by = c("totem_id" = "id"))
     bt_pipeTotemCA <- left_join(bt_capipebt, bt_pipeTotem, by = c("pipe_id" = "id"))
-    #bt_pipeTotemCAStaffing <- left_join(bt_pipeTotemCA, bt_staffingbt, by = c("totem_id" = "totem_id"))
+    
     progress$set(message = "Fermeture de la connexion", value = 100)
     close(conn)
     on.exit(progress$close())
@@ -226,7 +262,7 @@ shinyServer(function(input, output, session) {
 
     HistoriqueCA <- chargement$HistoriqueCA
     #on efface la semaine courante si elle existe
-    save(HistoriqueCA,file="HistoriqueCA.RData")
+    save(HistoriqueCA,file="HistoriqueCA1.RData")
     
   })
   
@@ -303,7 +339,8 @@ shinyServer(function(input, output, session) {
       gather(pourcentage,Calculs,PFerme:PProvisoire)
     
     #meme calcul pour les données historique
-
+    #on ne prend pas la semaine en cours 
+    HistoriqueStaffing <- HistoriqueStaffing %>% filter(week!=week(now()),week == input$Semaine)
     HistoriqueStaffing3mois <- HistoriqueStaffing %>% filter (Mois %in% c(mois,moisPlus1,moisPlus2), Annee %in% c(annee, anneePlus1)) 
     
     #On calcul le nombre de jours possibles par mois
@@ -433,6 +470,7 @@ output$StaffingHeatEcart <- renderPlot({
   #on va calculer les écarts entre la semaine présente et la seaine passée
   
   #on va regarder les données historique vs la base SQL Azure pour le staffing
+  HistoriqueStaffing <- HistoriqueStaffing %>% filter(week!=week(now()),week == input$Semaine)
   Histo_staffing3mois <- HistoriqueStaffing %>% filter (Mois %in% c(mois,moisPlus1,moisPlus2), Annee %in% c(annee, anneePlus1)) 
   Histo_staffing3mois <- Histo_staffing3mois %>% inner_join(bt_effectifGrade,by = c(effectif_id="id"))
   
@@ -489,6 +527,7 @@ StaffTableau <- reactive ({
   
   
   #il faut regarder les lignes différentes 
+  HistoriqueStaffing <- HistoriqueStaffing %>% filter(week!=week(now()),week == input$Semaine)
   histo <- HistoriqueStaffing %>% filter (Mois %in% c(mois,moisPlus1,moisPlus2), Annee %in% c(annee, anneePlus1))  %>% select (id,date_staffing,activite,jh,effectif_id,saisie_staffing_id)
   Staff <- bt_staffingbt  %>% mutate (Mois=month(date_staffing)) %>% mutate(Annee=year(date_staffing)) %>%
     filter (Mois %in% c(mois,moisPlus1,moisPlus2), Annee %in% c(annee, anneePlus1)) %>%
